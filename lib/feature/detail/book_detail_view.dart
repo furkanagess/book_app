@@ -13,19 +13,19 @@ class BookDetailView extends StatelessWidget {
         title: Text(book.title),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(book.thumbnailUrl),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Text(
               'Title: ${book.title}',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text('Author(s): ${book.author}'),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text('Description: ${book.description}'),
           ],
         ),

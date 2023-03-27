@@ -1,4 +1,5 @@
-import 'package:book_app/feature/home/book_home_view.dart';
+import 'package:book_app/feature/home/view/book_home_view.dart';
+import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: BookHomeView(),
+      home: BookSearchView(),
     );
   }
 }

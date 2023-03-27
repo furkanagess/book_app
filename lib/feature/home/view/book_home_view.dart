@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book_app/feature/detail/book_detail_view.dart';
+import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:flutter/material.dart';

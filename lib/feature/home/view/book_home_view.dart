@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:flutter/material.dart';
@@ -101,12 +102,19 @@ class _BookHomeViewState extends State<BookHomeView> {
             const SizedBox(
               height: 20,
             ),
-            Text(
-              "For You",
-              style: context.textTheme.headlineSmall,
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookSearchView(),
+                  ),
+                );
+              },
+              child: Text("Go to Search"),
             ),
-            Expanded(
-              flex: 2,
+            SizedBox(
+              height: context.dynamicHeight(0.3),
               child: Padding(
                 padding: context.paddingLow,
                 child: ListView.builder(

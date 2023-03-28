@@ -23,6 +23,10 @@ class BookDetailView extends StatelessWidget {
               'Title: ${book.title}',
               style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.favorite),
+            ),
             const SizedBox(height: 8.0),
             Text('Author(s): ${book.author}'),
             const SizedBox(height: 8.0),

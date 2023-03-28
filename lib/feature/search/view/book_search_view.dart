@@ -78,9 +78,11 @@ class _BookSearchViewState extends State<BookSearchView> {
                     title: Text(book.title),
                     subtitle: Text(book.author),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => BookDetailView(book: book),
-                      ));
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BookDetailView(book: book),
+                        ),
+                      );
                     },
                   ),
                 );

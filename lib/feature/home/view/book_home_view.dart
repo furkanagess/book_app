@@ -2,9 +2,13 @@ import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/feature/favorite/view/book_favorite_view.dart';
 import 'package:book_app/feature/search/view/book_search_view.dart';
+import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
+import 'package:book_app/sample/detail.dart';
+import 'package:book_app/sample/favorite.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,7 +29,7 @@ class _BookHomeViewState extends State<BookHomeView> {
   }
 
   void _loadBooks() async {
-    final response = await http.get(Uri.parse('https://www.googleapis.com/books/v1/volumes?q=flutter%20development'));
+    final response = await http.get(Uri.parse(ApiUrl.flutterDev));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       setState(() {
@@ -63,7 +67,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BookDetailView(book: books[index]),
+                          builder: (context) => BookDetailPage(book: books[index]),
                         ),
                       ),
                       child: Card(
@@ -102,16 +106,31 @@ class _BookHomeViewState extends State<BookHomeView> {
             const SizedBox(
               height: 20,
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BookSearchView(),
-                  ),
-                );
-              },
-              child: Text("Go to Search"),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BookSearchView(),
+                      ),
+                    );
+                  },
+                  child: Text("Go to Search"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FavoriteBooksPage(),
+                      ),
+                    );
+                  },
+                  child: Text("Go to Favorite"),
+                ),
+              ],
             ),
             SizedBox(
               height: context.dynamicHeight(0.3),
@@ -127,7 +146,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => BookDetailView(book: books[index]),
+                          builder: (context) => BookDetailPage(book: books[index]),
                         ),
                       ),
                     ),

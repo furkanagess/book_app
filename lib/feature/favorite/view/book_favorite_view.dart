@@ -7,7 +7,7 @@ class MyFavoritesPage extends StatefulWidget {
 }
 
 class _MyFavoritesPageState extends State<MyFavoritesPage> {
-  List<Book> _favorites = []; // Favori kitapları depolamak için boş bir liste oluşturun.
+  List<Book> favorites = []; // Favori kitapları depolamak için boş bir liste oluşturun.
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +16,13 @@ class _MyFavoritesPageState extends State<MyFavoritesPage> {
         title: Text('My Favorite Books'),
       ),
       body: ListView.builder(
-        itemCount: _favorites.length,
+        itemCount: favorites.length,
         itemBuilder: (context, index) {
-          Book book = _favorites[index];
+          Book book = favorites[index];
           return ListTile(
             title: Text(book.title),
             subtitle: Text('By ${book.author}'),
-            leading: Image.network(_favorites[index].thumbnailUrl),
+            leading: Image.network(favorites[index].thumbnailUrl),
           );
         },
       ),

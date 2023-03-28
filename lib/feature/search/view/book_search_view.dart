@@ -1,6 +1,7 @@
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/feature/search/service/search_service.dart';
 import 'package:book_app/product/models/book.dart';
+import 'package:book_app/sample/detail.dart';
 import 'package:flutter/material.dart';
 
 class BookSearchView extends StatefulWidget {
@@ -80,7 +81,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (_) => BookDetailView(book: book),
+                          builder: (_) => BookDetailPage(book: book),
                         ),
                       );
                     },

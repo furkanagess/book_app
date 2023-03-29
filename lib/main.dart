@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:book_app/feature/home/view/book_home_view.dart';
 import 'package:book_app/feature/search/view/book_search_view.dart';
-import 'package:book_app/sample/changeNotifier.dart';
+import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,8 +1,10 @@
-import 'package:book_app/sample/changeNotifier.dart';
+import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FavoriteBooksPage extends StatelessWidget {
+class FavoriteBooksView extends StatelessWidget {
+  const FavoriteBooksView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final favoriteBooks = Provider.of<FavoriteBooks>(context);

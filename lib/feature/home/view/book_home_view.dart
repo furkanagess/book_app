@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book_app/feature/category/view/category_page_view.dart';
 
 import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:book_app/product/constants/api_types.dart';
@@ -168,6 +169,17 @@ class _BookHomeViewState extends State<BookHomeView> {
                       );
                     },
                     child: const Text("Go to Favorite"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BookCategoriesView(),
+                        ),
+                      );
+                    },
+                    child: const Text("Go to Categories"),
                   ),
                 ],
               ),

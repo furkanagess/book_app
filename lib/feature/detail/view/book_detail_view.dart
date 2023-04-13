@@ -19,10 +19,11 @@ class BookDetailView extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: context.dynamicHeight(0.4),
+              height: context.dynamicHeight(0.5),
               child: Card(
+                shadowColor: Colors.amberAccent,
                 margin: EdgeInsets.all(10.0),
-                elevation: 5,
+                elevation: 10,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -47,10 +48,13 @@ class BookDetailView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amberAccent,
         onPressed: () {
           final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
           favoriteBooks.addBook(book);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added to favorites')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Added to favorites'),
+          ));
         },
         child: Icon(Icons.favorite),
       ),

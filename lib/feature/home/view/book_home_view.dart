@@ -59,18 +59,56 @@ class _BookHomeViewState extends State<BookHomeView> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   color: Colors.amberAccent,
-                  child: ListTile(
-                    title: Text("Enjoy your reaading"),
-                    subtitle: Text("You can easily reach" * 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Padding(
+                            padding: context.paddingLow,
+                            child: Text(
+                              "Enjoy your reading",
+                              style: context.textTheme.labelLarge,
+                            ),
+                          ),
+                          Padding(
+                            padding: context.paddingLow,
+                            child: Text(
+                              "Enjoy your reading",
+                              style: context.textTheme.labelMedium,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.book,
+                            size: 70,
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
               SizedBox(
                 height: context.dynamicHeight(0.05),
               ),
-              Text(
-                "Trendings",
-                style: context.textTheme.headlineSmall,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Trendings",
+                    style: context.textTheme.headlineSmall,
+                  ),
+                  Text(
+                    "See more",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
               ),
               SizedBox(
                 height: context.dynamicHeight(0.3),
@@ -109,9 +147,18 @@ class _BookHomeViewState extends State<BookHomeView> {
                   },
                 ),
               ),
-              Text(
-                "Recommended For You",
-                style: context.textTheme.headlineSmall,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Recommended",
+                    style: context.textTheme.headlineSmall,
+                  ),
+                  Text(
+                    "See more",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
               ),
               SizedBox(
                 height: context.dynamicHeight(0.3),
@@ -197,12 +244,25 @@ class _BookHomeViewState extends State<BookHomeView> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.transparent,
-      centerTitle: true,
       elevation: 0,
-      title: const Text(
-        'Home Page',
-        style: TextStyle(color: Colors.black),
+      leading: Icon(
+        Icons.list,
+        size: 30,
+        color: Colors.black,
       ),
+      actions: [
+        Padding(
+          padding: context.paddingLow,
+          child: CircleAvatar(
+            backgroundColor: Colors.black,
+            radius: 18,
+            child: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

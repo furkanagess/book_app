@@ -35,11 +35,7 @@ class _BookSearchViewState extends State<BookSearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text("Book Page"),
-        centerTitle: true,
-      ),
+      appBar: buildAppBar(),
       body: Column(
         children: [
           Padding(
@@ -68,7 +64,7 @@ class _BookSearchViewState extends State<BookSearchView> {
               itemBuilder: (BuildContext context, int index) {
                 final book = _books[index];
                 return Card(
-                  elevation: 5,
+                  elevation: 3,
                   child: ListTile(
                     leading: _books[index].thumbnailUrl.isNotEmpty
                         ? Image.network(_books[index].thumbnailUrl)
@@ -91,6 +87,18 @@ class _BookSearchViewState extends State<BookSearchView> {
           ),
         ],
       ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      title: Text(
+        "Search Books",
+        style: TextStyle(color: Colors.black),
+      ),
+      centerTitle: true,
     );
   }
 }

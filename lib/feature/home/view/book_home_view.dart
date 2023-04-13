@@ -61,9 +61,12 @@ class _BookHomeViewState extends State<BookHomeView> {
                   color: Colors.amberAccent,
                   child: ListTile(
                     title: Text("Enjoy your reaading"),
-                    subtitle: Text("You can easily reach"),
+                    subtitle: Text("You can easily reach" * 10),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: context.dynamicHeight(0.05),
               ),
               Text(
                 "Trendings",

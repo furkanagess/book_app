@@ -1,3 +1,4 @@
+import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 
 import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
@@ -12,22 +13,38 @@ class BookDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(book.title),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            book.title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'by ${book.author}',
-            style: TextStyle(fontSize: 18),
-          ),
-          Text(book.description),
-        ],
+      appBar: buildAppbar(),
+      body: Padding(
+        padding: context.paddingLow,
+        child: Column(
+          children: [
+            SizedBox(
+              height: context.dynamicHeight(0.4),
+              child: Card(
+                margin: EdgeInsets.all(10.0),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.network(
+                  book.thumbnailUrl,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            Text(
+              book.title,
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'by ${book.author}',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(book.description),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -36,6 +53,17 @@ class BookDetailView extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Added to favorites')));
         },
         child: Icon(Icons.favorite),
+      ),
+    );
+  }
+
+  AppBar buildAppbar() {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Text(
+        book.title,
+        style: TextStyle(color: Colors.black),
       ),
     );
   }

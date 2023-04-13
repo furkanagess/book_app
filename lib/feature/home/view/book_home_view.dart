@@ -29,7 +29,7 @@ class _BookHomeViewState extends State<BookHomeView> {
   }
 
   void _loadBooks() async {
-    final response = await http.get(Uri.parse(ApiUrl.flutterDev));
+    final response = await http.get(Uri.parse(ApiUrl.programming));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       setState(() {
@@ -44,109 +44,110 @@ class _BookHomeViewState extends State<BookHomeView> {
       appBar: _buildAppBar(),
       body: Padding(
         padding: context.paddingLow,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Spacer(),
-            Expanded(
-              flex: 1,
-              child: Text(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Discover Books",
+                style: context.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: context.dynamicHeight(0.2),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  color: Colors.amberAccent,
+                  child: ListTile(
+                    title: Text("Enjoy your reaading"),
+                    subtitle: Text("You can easily reach"),
+                  ),
+                ),
+              ),
+              Text(
                 "Trendings",
                 style: context.textTheme.headlineSmall,
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: ListView.builder(
-                itemCount: books.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BookDetailView(book: books[index]),
+              SizedBox(
+                height: context.dynamicHeight(0.3),
+                child: ListView.builder(
+                  itemCount: books.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BookDetailView(book: books[index]),
+                        ),
                       ),
-                    ),
-                    child: Card(
-                      elevation: 5,
-                      child: Image.network(
-                        books[index].thumbnailUrl,
-                        fit: BoxFit.fill,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: context.dynamicHeight(0.25),
+                            child: Card(
+                              margin: EdgeInsets.all(10.0),
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Image.network(
+                                books[index].thumbnailUrl,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            Spacer(),
-            Expanded(
-              flex: 1,
-              child: Text(
-                "Trendings",
+              Text(
+                "Recommended For You",
                 style: context.textTheme.headlineSmall,
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: ListView.builder(
-                itemCount: books.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BookDetailView(book: books[index]),
+              SizedBox(
+                height: context.dynamicHeight(0.3),
+                child: ListView.builder(
+                  itemCount: books.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BookDetailView(book: books[index]),
+                        ),
                       ),
-                    ),
-                    child: Card(
-                      elevation: 5,
-                      child: Image.network(
-                        books[index].thumbnailUrl,
-                        fit: BoxFit.fill,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: context.dynamicHeight(0.25),
+                            child: Card(
+                              margin: EdgeInsets.all(10.0),
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Image.network(
+                                books[index].thumbnailUrl,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            Spacer(),
-            Expanded(
-              flex: 1,
-              child: Text(
-                "Trendings",
-                style: context.textTheme.headlineSmall,
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: ListView.builder(
-                itemCount: books.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BookDetailView(book: books[index]),
-                      ),
-                    ),
-                    child: Card(
-                      elevation: 5,
-                      child: Image.network(
-                        books[index].thumbnailUrl,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Spacer(),
-            Expanded(
-              flex: 1,
-              child: Row(
+              Row(
                 children: [
                   TextButton(
                     onPressed: () {
@@ -183,9 +184,8 @@ class _BookHomeViewState extends State<BookHomeView> {
                   ),
                 ],
               ),
-            ),
-            Spacer(),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -197,8 +197,8 @@ class _BookHomeViewState extends State<BookHomeView> {
       centerTitle: true,
       elevation: 0,
       title: const Text(
-        'Books',
-        style: TextStyle(color: Colors.orange),
+        'Home Page',
+        style: TextStyle(color: Colors.black),
       ),
     );
   }

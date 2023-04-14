@@ -25,10 +25,10 @@ class _BookHomeViewState extends State<BookHomeView> {
   @override
   void initState() {
     super.initState();
-    _loadBooks();
+    programmingBooks();
   }
 
-  void _loadBooks() async {
+  void programmingBooks() async {
     final response = await http.get(Uri.parse(ApiUrl.programming));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
@@ -42,9 +42,9 @@ class _BookHomeViewState extends State<BookHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Padding(
-        padding: context.paddingLow,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: context.paddingLowHorizontal,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -14,9 +14,9 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int currentPage = 0;
   final pages = [
-    BookHomeView(),
-    BookSearchView(),
-    FavoriteBooksView(),
+    const BookHomeView(),
+    const BookSearchView(),
+    const FavoriteBooksView(),
     BookCategoriesView(),
   ];
   @override
@@ -25,8 +25,8 @@ class _MainPageState extends State<MainPage> {
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.amber,
-        unselectedIconTheme: IconThemeData(color: Colors.black),
-        selectedIconTheme: IconThemeData(
+        unselectedIconTheme: const IconThemeData(color: Colors.black),
+        selectedIconTheme: const IconThemeData(
           color: Colors.amber,
         ),
         currentIndex: currentPage,
@@ -36,7 +36,7 @@ class _MainPageState extends State<MainPage> {
             currentPage = index;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,

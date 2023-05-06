@@ -84,7 +84,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.book,
                             size: 70,
                           ),
@@ -128,7 +128,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                           SizedBox(
                             height: context.dynamicHeight(0.25),
                             child: Card(
-                              margin: EdgeInsets.all(10.0),
+                              margin: const EdgeInsets.all(10.0),
                               elevation: 5,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -178,7 +178,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                           SizedBox(
                             height: context.dynamicHeight(0.25),
                             child: Card(
-                              margin: EdgeInsets.all(10.0),
+                              margin: const EdgeInsets.all(10.0),
                               elevation: 5,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -197,43 +197,6 @@ class _BookHomeViewState extends State<BookHomeView> {
                   },
                 ),
               ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BookSearchView(),
-                        ),
-                      );
-                    },
-                    child: const Text("Go to Search"),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const FavoriteBooksView(),
-                        ),
-                      );
-                    },
-                    child: const Text("Go to Favorite"),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BookCategoriesView(),
-                        ),
-                      );
-                    },
-                    child: const Text("Go to Categories"),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
@@ -245,7 +208,7 @@ class _BookHomeViewState extends State<BookHomeView> {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Icon(
+      leading: const Icon(
         Icons.list,
         size: 30,
         color: Colors.black,
@@ -253,7 +216,7 @@ class _BookHomeViewState extends State<BookHomeView> {
       actions: [
         Padding(
           padding: context.paddingLow,
-          child: CircleAvatar(
+          child: const CircleAvatar(
             backgroundColor: Colors.black,
             radius: 18,
             child: Icon(

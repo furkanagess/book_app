@@ -16,35 +16,37 @@ class BookDetailView extends StatelessWidget {
       appBar: buildAppbar(),
       body: Padding(
         padding: context.paddingLow,
-        child: Column(
-          children: [
-            SizedBox(
-              height: context.dynamicHeight(0.5),
-              child: Card(
-                shadowColor: Colors.amberAccent,
-                margin: EdgeInsets.all(10.0),
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                semanticContainer: true,
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.network(
-                  book.thumbnailUrl,
-                  fit: BoxFit.fill,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: context.dynamicHeight(0.5),
+                child: Card(
+                  shadowColor: Colors.amberAccent,
+                  margin: EdgeInsets.all(10.0),
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Image.network(
+                    book.thumbnailUrl,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              book.title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'by ${book.author}',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(book.description),
-          ],
+              Text(
+                book.title,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'by ${book.author}',
+                style: TextStyle(fontSize: 18),
+              ),
+              Text(book.description),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -63,6 +65,7 @@ class BookDetailView extends StatelessWidget {
 
   AppBar buildAppbar() {
     return AppBar(
+      iconTheme: IconThemeData(color: Colors.black),
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: Text(

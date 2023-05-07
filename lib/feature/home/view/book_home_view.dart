@@ -7,10 +7,11 @@ import 'package:book_app/feature/home/viewModel/home_view_model.dart';
 import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/api_types.dart';
+import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
-import 'package:book_app/feature/favorite/view/favorite.dart';
+import 'package:book_app/feature/favorite/view/favorite_view.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -71,14 +72,14 @@ class _BookHomeViewState extends State<BookHomeView> {
                             Padding(
                               padding: context.paddingLow,
                               child: Text(
-                                "Welcome",
+                                AppStrings.welcome,
                                 style: context.textTheme.headlineSmall,
                               ),
                             ),
                             Padding(
                               padding: context.paddingLow,
                               child: Text(
-                                "Enjoy your reading. \n You can access the type of books you want \n add the books you want to your favorites \n and look again later",
+                                AppStrings.subHeader,
                                 style: context.textTheme.bodyMedium,
                               ),
                             ),
@@ -104,11 +105,11 @@ class _BookHomeViewState extends State<BookHomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Trendings",
+                      AppStrings.trending,
                       style: context.textTheme.headlineSmall,
                     ),
                     Text(
-                      "See more",
+                      AppStrings.seeMore,
                       style: context.textTheme.bodyMedium,
                     ),
                   ],
@@ -154,11 +155,11 @@ class _BookHomeViewState extends State<BookHomeView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Recommended",
+                      AppStrings.recommended,
                       style: context.textTheme.headlineSmall,
                     ),
                     Text(
-                      "See more",
+                      AppStrings.seeMore,
                       style: context.textTheme.bodyMedium,
                     ),
                   ],
@@ -212,24 +213,11 @@ class _BookHomeViewState extends State<BookHomeView> {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: const Icon(
-        Icons.list,
-        size: 30,
-        color: Colors.black,
+      centerTitle: true,
+      title: Text(
+        AppStrings.discover,
+        style: context.textTheme.headlineSmall?.copyWith(color: Colors.black),
       ),
-      actions: [
-        Padding(
-          padding: context.paddingLow,
-          child: const CircleAvatar(
-            backgroundColor: Colors.black,
-            radius: 18,
-            child: Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

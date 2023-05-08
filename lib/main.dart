@@ -13,7 +13,7 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteBooks()),
         ],
-        child: MyApp(),
+        child: const MyApp(),
       ),
     );
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: MainPage(),

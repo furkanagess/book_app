@@ -1,17 +1,13 @@
 import 'dart:convert';
 
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book_app/feature/category/view/category_page_view.dart';
 import 'package:book_app/feature/home/viewModel/home_view_model.dart';
 
-import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
-import 'package:book_app/feature/favorite/view/favorite_view.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

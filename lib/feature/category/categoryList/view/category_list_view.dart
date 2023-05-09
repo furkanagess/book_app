@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
+
 import 'dart:convert';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/models/book.dart';
@@ -45,7 +47,7 @@ class _BookListPageState extends State<BookListPage> {
   @override
   Widget build(BuildContext context) {
     if (_books == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
         ),

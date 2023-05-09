@@ -23,7 +23,7 @@ class BookDetailView extends StatelessWidget {
                 height: context.dynamicHeight(0.5),
                 child: Card(
                   shadowColor: Colors.amberAccent,
-                  margin: EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(10.0),
                   elevation: 10,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -38,11 +38,11 @@ class BookDetailView extends StatelessWidget {
               ),
               Text(
                 book.title,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Text(
                 'by ${book.author}',
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
               Text(book.description),
             ],
@@ -54,23 +54,23 @@ class BookDetailView extends StatelessWidget {
         onPressed: () {
           final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
           favoriteBooks.addBook(book);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text('Added to favorites'),
           ));
         },
-        child: Icon(Icons.favorite),
+        child: const Icon(Icons.favorite),
       ),
     );
   }
 
   AppBar buildAppbar() {
     return AppBar(
-      iconTheme: IconThemeData(color: Colors.black),
+      iconTheme: const IconThemeData(color: Colors.black),
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: Text(
         book.title,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

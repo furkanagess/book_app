@@ -40,7 +40,7 @@ class _BookCategoriesViewState extends State<BookCategoriesView> {
   @override
   Widget build(BuildContext context) {
     if (_categories == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),
         ),
@@ -49,7 +49,7 @@ class _BookCategoriesViewState extends State<BookCategoriesView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book Categories'),
+        title: const Text('Book Categories'),
       ),
       body: ListView.builder(
         itemCount: _categories.length,

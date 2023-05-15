@@ -17,7 +17,7 @@ class _MainPageState extends State<MainPage> {
     const BookHomeView(),
     const BookSearchView(),
     const FavoriteBooksView(),
-    BookCategoriesView(),
+    BookCategoryView(),
   ];
   @override
   Widget build(BuildContext context) {

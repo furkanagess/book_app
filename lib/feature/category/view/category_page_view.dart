@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'package:book_app/feature/category/categoryList/view/category_list_view.dart';
+import 'package:book_app/feature/category/viewModel/category_view_model.dart';
+import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class BookCategoriesView extends StatefulWidget {
+class BookCategoryView extends StatefulWidget {
   @override
-  _BookCategoriesViewState createState() => _BookCategoriesViewState();
+  _BookCategoryViewState createState() => _BookCategoryViewState();
 }
 
-class _BookCategoriesViewState extends State<BookCategoriesView> {
+class _BookCategoryViewState extends State<BookCategoryView> {
   List<BookCategory> _categories = [];
 
   @override
@@ -47,21 +49,27 @@ class _BookCategoriesViewState extends State<BookCategoriesView> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Book Categories'),
-      ),
-      body: ListView.builder(
-        itemCount: _categories.length,
-        itemBuilder: (context, index) {
-          final category = _categories[index];
-          return ListTile(
-            title: Text(category.name),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookListPage(category)));
-            },
-          );
-        },
+    return BaseView<CategoryViewModel>(
+      viewModel: CategoryViewModel(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
+      onPageBuilder: (context, value) => Scaffold(
+        appBar: AppBar(
+          title: const Text('Book Categories'),
+        ),
+        body: ListView.builder(
+          itemCount: _categories.length,
+          itemBuilder: (context, index) {
+            final category = _categories[index];
+            return ListTile(
+              title: Text(category.name),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookListView(category)));
+              },
+            );
+          },
+        ),
       ),
     );
   }

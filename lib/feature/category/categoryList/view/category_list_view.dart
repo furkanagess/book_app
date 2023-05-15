@@ -1,22 +1,24 @@
 // ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
 
 import 'dart:convert';
+import 'package:book_app/feature/category/categoryList/viewModel/category_list_view_model.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class BookListPage extends StatefulWidget {
+class BookListView extends StatefulWidget {
   final BookCategory category;
 
-  BookListPage(this.category);
+  BookListView(this.category);
 
   @override
-  _BookListPageState createState() => _BookListPageState();
+  _BookListViewState createState() => _BookListViewState();
 }
 
-class _BookListPageState extends State<BookListPage> {
+class _BookListViewState extends State<BookListView> {
   List<Book> _books = [];
 
   @override
@@ -54,22 +56,28 @@ class _BookListPageState extends State<BookListPage> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.category.name),
-      ),
-      body: ListView.builder(
-        itemCount: _books.length,
-        itemBuilder: (context, index) {
-          final book = _books[index];
-          return ListTile(
-            title: Text(book.title),
-            subtitle: Text(book.author),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookDetailView(book: _books[index])));
-            },
-          );
-        },
+    return BaseView<CategoryListViewModel>(
+      viewModel: CategoryListViewModel(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
+      onPageBuilder: (context, value) => Scaffold(
+        appBar: AppBar(
+          title: Text(widget.category.name),
+        ),
+        body: ListView.builder(
+          itemCount: _books.length,
+          itemBuilder: (context, index) {
+            final book = _books[index];
+            return ListTile(
+              title: Text(book.title),
+              subtitle: Text(book.author),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookDetailView(book: _books[index])));
+              },
+            );
+          },
+        ),
       ),
     );
   }

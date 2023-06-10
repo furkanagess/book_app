@@ -16,9 +16,9 @@ class _MainPageState extends State<MainPage> {
   int currentPage = 0;
   final pages = [
     const BookHomeView(),
-    const BookSearchView(),
-    const FavoriteBooksView(),
     BookCategoryView(),
+    const FavoriteBooksView(),
+    const BookSearchView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -54,21 +54,21 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.book,
+            ),
+            label: "Categories",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite,
+            ),
+            label: "Favorites",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.search,
             ),
             label: "Search",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.library_add,
-            ),
-            label: "Library",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.book,
-            ),
-            label: "Category",
           ),
         ],
       ),

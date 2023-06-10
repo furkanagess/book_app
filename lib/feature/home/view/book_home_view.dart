@@ -60,45 +60,7 @@ class _BookHomeViewState extends State<BookHomeView> {
                 TrendingsListview(books: books),
                 SizedBox(height: context.dynamicHeight(0.05)),
                 recommendedHeaderRow(context),
-                SizedBox(
-                  height: context.dynamicHeight(0.3),
-                  child: ListView.builder(
-                    itemCount: books.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BookDetailView(book: books[index]),
-                          ),
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: context.dynamicHeight(0.25),
-                              child: Card(
-                                margin: const EdgeInsets.all(10.0),
-                                elevation: 5,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                semanticContainer: true,
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: books[index] == null
-                                    ? const Icon(Icons.book)
-                                    : Image.network(
-                                        books[index].thumbnailUrl,
-                                        fit: BoxFit.fill,
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                TrendingsListview(books: books),
               ],
             ),
           ),
@@ -152,7 +114,7 @@ class _BookHomeViewState extends State<BookHomeView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Merhaba İyi Günler",
+          AppStrings.homeHeader,
           style: context.textTheme.headlineSmall?.copyWith(
             color: AppColors().white,
           ),

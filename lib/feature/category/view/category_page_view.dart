@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:book_app/feature/category/categoryList/view/category_list_view.dart';
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
+import 'package:book_app/product/constants/app_colors.dart';
+import 'package:book_app/product/constants/app_strings.dart';
+import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -55,21 +58,81 @@ class _BookCategoryViewState extends State<BookCategoryView> {
         model.setContext(context);
       },
       onPageBuilder: (context, value) => Scaffold(
+        backgroundColor: AppColors().background,
         appBar: AppBar(
-          title: const Text('Book Categories'),
+          backgroundColor: AppColors().transparent,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            AppStrings.categories,
+            style: context.textTheme.headlineSmall?.copyWith(
+              color: AppColors().white,
+            ),
+          ),
         ),
-        body: ListView.builder(
-          itemCount: _categories.length,
-          itemBuilder: (context, index) {
-            final category = _categories[index];
-            return ListTile(
-              title: Text(category.name),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookListView(category)));
-              },
-            );
-          },
+        body: SafeArea(
+          child: ListView(
+            children: [
+              SizedBox(height: context.dynamicHeight(0.05)),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _categories.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 1,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 1,
+                ),
+                itemBuilder: (context, index) {
+                  final category = _categories[index];
+                  return Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => BookListView(category),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: context.dynamicWidth(0.42),
+                          height: context.dynamicHeight(0.25),
+                          decoration: BoxDecoration(
+                            color: AppColors().green,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                              child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              category.name,
+                              style: context.textTheme.titleLarge?.copyWith(color: AppColors().white),
+                            ),
+                          )),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
         ),
+        // ListView.builder(
+        //   itemCount: _categories.length,
+        //   itemBuilder: (context, index) {
+        //     final category = _categories[index];
+        //     return ListTile(
+        //       title: Text(category.name),
+        //       onTap: () {
+        //         Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookListView(category)));
+        //       },
+        //     );
+        //   },
+        // ),
       ),
     );
   }

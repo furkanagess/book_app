@@ -29,7 +29,7 @@ class _BookHomeViewState extends State<BookHomeView> {
   }
 
   void programmingBooks() async {
-    final response = await http.get(Uri.parse(ApiUrl.flutterDev));
+    final response = await http.get(Uri.parse(ApiUrl.programming));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       setState(() {
@@ -56,95 +56,10 @@ class _BookHomeViewState extends State<BookHomeView> {
               children: [
                 headerRow(context),
                 SizedBox(height: context.dynamicHeight(0.05)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppStrings.trending,
-                      style: context.textTheme.headlineSmall?.copyWith(
-                        color: AppColors().white,
-                      ),
-                    ),
-                    Text(
-                      AppStrings.seeMore,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: AppColors().white,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: context.dynamicHeight(0.5),
-                  child: ListView.builder(
-                    itemCount: books.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: context.paddingLow,
-                        child: GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BookDetailView(book: books[index]),
-                            ),
-                          ),
-                          child: Container(
-                            width: context.dynamicWidth(0.44),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors().transparentWhite,
-                            ),
-                            child: Padding(
-                              padding: context.paddingLow,
-                              child: Column(
-                                children: [
-                                  Card(
-                                    margin: const EdgeInsets.all(10.0),
-                                    elevation: 5,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    semanticContainer: true,
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    child: Image.network(
-                                      books[index].thumbnailUrl,
-                                      fit: BoxFit.fill,
-                                      height: 200,
-                                      width: 200,
-                                    ),
-                                  ),
-                                  Text(
-                                    books[index].title,
-                                    style: context.textTheme.bodyMedium?.copyWith(
-                                      color: AppColors().white,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      AppStrings.recommended,
-                      style: context.textTheme.headlineSmall?.copyWith(
-                        color: AppColors().white,
-                      ),
-                    ),
-                    Text(
-                      AppStrings.seeMore,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: AppColors().white,
-                      ),
-                    ),
-                  ],
-                ),
+                trendingsHeaderRow(context),
+                TrendingsListview(books: books),
+                SizedBox(height: context.dynamicHeight(0.05)),
+                recommendedHeaderRow(context),
                 SizedBox(
                   height: context.dynamicHeight(0.3),
                   child: ListView.builder(
@@ -170,10 +85,12 @@ class _BookHomeViewState extends State<BookHomeView> {
                                 ),
                                 semanticContainer: true,
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                child: Image.network(
-                                  books[index].thumbnailUrl,
-                                  fit: BoxFit.fill,
-                                ),
+                                child: books[index] == null
+                                    ? const Icon(Icons.book)
+                                    : Image.network(
+                                        books[index].thumbnailUrl,
+                                        fit: BoxFit.fill,
+                                      ),
                               ),
                             ),
                           ],
@@ -187,6 +104,46 @@ class _BookHomeViewState extends State<BookHomeView> {
           ),
         ),
       ),
+    );
+  }
+
+  Row recommendedHeaderRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          AppStrings.recommended,
+          style: context.textTheme.headlineSmall?.copyWith(
+            color: AppColors().white,
+          ),
+        ),
+        Text(
+          AppStrings.seeMore,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: AppColors().white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row trendingsHeaderRow(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          AppStrings.trending,
+          style: context.textTheme.headlineSmall?.copyWith(
+            color: AppColors().white,
+          ),
+        ),
+        Text(
+          AppStrings.seeMore,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: AppColors().white,
+          ),
+        ),
+      ],
     );
   }
 
@@ -233,6 +190,91 @@ class _BookHomeViewState extends State<BookHomeView> {
         style: context.textTheme.headlineSmall?.copyWith(
           color: AppColors().white,
         ),
+      ),
+    );
+  }
+}
+
+class TrendingsListview extends StatelessWidget {
+  const TrendingsListview({
+    super.key,
+    required this.books,
+  });
+
+  final List<Book> books;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.dynamicHeight(0.5),
+      child: ListView.builder(
+        itemCount: books.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: context.paddingLow,
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BookDetailView(book: books[index]),
+                ),
+              ),
+              child: Container(
+                width: context.dynamicWidth(0.45),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors().darkWhite,
+                ),
+                child: Padding(
+                  padding: context.paddingLow,
+                  child: Column(
+                    children: [
+                      Card(
+                        margin: const EdgeInsets.all(10.0),
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        semanticContainer: true,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Image.network(
+                          books[index].thumbnailUrl,
+                          fit: BoxFit.fill,
+                          height: 200,
+                          width: 200,
+                        ),
+                      ),
+                      SizedBox(height: context.dynamicHeight(0.01)),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                books[index].title,
+                                style: context.textTheme.titleSmall?.copyWith(
+                                  color: AppColors().white,
+                                ),
+                              ),
+                              SizedBox(height: context.dynamicHeight(0.02)),
+                              Text(
+                                books[index].author,
+                                style: context.textTheme.bodyLarge?.copyWith(
+                                  color: AppColors().darkGrey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

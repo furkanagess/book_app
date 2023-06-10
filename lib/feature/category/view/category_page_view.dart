@@ -22,7 +22,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
   }
 
   Future<void> _fetchCategories() async {
-    final response = await http.get(Uri.parse('https://www.googleapis.com/books/v1/volumes?q=*'));
+    final response = await http.get(Uri.parse('https://www.googleapis.com/books/v1/volumes?q=all'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
       final categories = Set<String>();

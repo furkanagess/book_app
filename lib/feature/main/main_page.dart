@@ -2,6 +2,7 @@ import 'package:book_app/feature/category/view/category_page_view.dart';
 import 'package:book_app/feature/favorite/view/favorite_view.dart';
 import 'package:book_app/feature/home/view/book_home_view.dart';
 import 'package:book_app/feature/search/view/book_search_view.dart';
+import 'package:book_app/product/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -24,13 +25,21 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.amber,
-        unselectedIconTheme: const IconThemeData(color: Colors.black),
-        selectedIconTheme: const IconThemeData(
-          color: Colors.amber,
+        backgroundColor: AppColors().background,
+        selectedItemColor: AppColors().green,
+        unselectedItemColor: AppColors().darkGrey,
+        unselectedLabelStyle: TextStyle(
+          color: AppColors().darkWhite,
+        ),
+        unselectedIconTheme: IconThemeData(
+          color: AppColors().darkGrey,
+        ),
+        selectedIconTheme: IconThemeData(
+          color: AppColors().green,
+          size: 30,
         ),
         currentIndex: currentPage,
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         onTap: (index) {
           setState(() {
             currentPage = index;

@@ -7,4 +7,5 @@ class AppColors {
   Color get darkWhite => Color(0xff212121);
   Color get grey => Color(0xffb3b3b3);
   Color get darkGrey => Color(0xff535353);
+  Color get transparent => Colors.transparent;
 }

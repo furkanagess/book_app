@@ -7,6 +7,8 @@ class AppStrings {
 
   // Home
   static const String discover = "Discover Books";
+  static const String categories = "Book Categories";
+  static const String homeHeader = "Have a good day";
   static const String trending = "Trendings";
   static const String seeMore = "See more";
   static const String recommended = "Recommended";

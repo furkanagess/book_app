@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class AppStrings {
   const AppStrings._();
   static const String appName = "Library";
-
+  static const String wait = "Please wait... ";
+  static const String placeholderText = "This doesn't have any description. Please come later and check this.";
   // Home
   static const String discover = "Discover Books";
   static const String categories = "Book Categories";

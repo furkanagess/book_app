@@ -1,5 +1,7 @@
+// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
+
 import 'dart:convert';
-import 'package:book_app/feature/category/categoryList/view/category_list_view.dart';
+import 'package:book_app/feature/category/categoryList/view/categories_detail_view.dart';
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class BookCategoryView extends StatefulWidget {
+  const BookCategoryView({super.key});
+
   @override
   _BookCategoryViewState createState() => _BookCategoryViewState();
 }
@@ -28,7 +32,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
     final response = await http.get(Uri.parse('https://www.googleapis.com/books/v1/volumes?q=all'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
-      final categories = Set<String>();
+      final categories = <String>{};
       for (final item in body['items']) {
         if (item['volumeInfo']['categories'] != null) {
           categories.addAll(List<String>.from(item['volumeInfo']['categories']));
@@ -92,7 +96,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => BookListView(category),
+                              builder: (context) => BookCategoriesDetailPage(category),
                             ),
                           );
                         },
@@ -121,18 +125,6 @@ class _BookCategoryViewState extends State<BookCategoryView> {
             ],
           ),
         ),
-        // ListView.builder(
-        //   itemCount: _categories.length,
-        //   itemBuilder: (context, index) {
-        //     final category = _categories[index];
-        //     return ListTile(
-        //       title: Text(category.name),
-        //       onTap: () {
-        //         Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookListView(category)));
-        //       },
-        //     );
-        //   },
-        // ),
       ),
     );
   }

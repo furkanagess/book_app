@@ -9,6 +9,7 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -119,25 +120,6 @@ class _BookHomeViewState extends State<BookHomeView> {
             color: AppColors().white,
           ),
         ),
-        const Spacer(),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.sort,
-            color: AppColors().white,
-          ),
-        ),
-        IconButton(
-          padding: const EdgeInsets.only(left: 16),
-          onPressed: () {},
-          icon: Icon(
-            Icons.manage_search,
-            color: AppColors().white,
-          ),
-        ),
-        SizedBox(
-          width: context.dynamicWidth(0.06),
-        )
       ],
     );
   }
@@ -173,68 +155,30 @@ class TrendingsListview extends StatelessWidget {
         itemCount: books.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: context.paddingLow,
-            child: GestureDetector(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BookDetailView(book: books[index]),
-                ),
-              ),
-              child: Container(
-                width: context.dynamicWidth(0.45),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors().darkWhite,
-                ),
-                child: Padding(
-                  padding: context.paddingLow,
-                  child: Column(
-                    children: [
-                      Card(
-                        margin: const EdgeInsets.all(10.0),
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        child: Image.network(
-                          books[index].thumbnailUrl,
-                          fit: BoxFit.fill,
-                          height: 200,
-                          width: 200,
-                        ),
-                      ),
-                      SizedBox(height: context.dynamicHeight(0.01)),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                books[index].title,
-                                style: context.textTheme.titleSmall?.copyWith(
-                                  color: AppColors().white,
-                                ),
-                              ),
-                              SizedBox(height: context.dynamicHeight(0.02)),
-                              Text(
-                                books[index].author,
-                                style: context.textTheme.bodyLarge?.copyWith(
-                                  color: AppColors().darkGrey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          return BookInfoContainer(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BookDetailView(book: books[index]),
               ),
             ),
+            img: books[index].thumbnailUrl == ""
+                ? Icon(
+                    Icons.book,
+                    size: 150,
+                    color: AppColors().green,
+                  )
+                : Image.network(
+                    books[index].thumbnailUrl,
+                    fit: BoxFit.fill,
+                    height: 200,
+                    width: 200,
+                  ),
+            bgColor: AppColors().darkWhite,
+            title: books[index].title,
+            subColor: AppColors().darkGrey,
+            subText: books[index].author,
+            titleColor: AppColors().white,
           );
         },
       ),

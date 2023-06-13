@@ -7,6 +7,7 @@ import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 
 import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
+import 'package:book_app/product/widgets/container/paragraph_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -55,50 +56,11 @@ class BookDetailView extends StatelessWidget {
                         ),
                 ),
               ),
-              Container(
-                height: context.dynamicHeight(0.4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors().darkWhite,
-                ),
-                child: Padding(
-                  padding: context.paddingNormal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: context.dynamicHeight(0.01)),
-                      Text(
-                        "Description",
-                        style: context.textTheme.headlineSmall?.copyWith(
-                          color: AppColors().white,
-                        ),
-                      ),
-                      SizedBox(height: context.dynamicHeight(0.01)),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(top: 8, left: 16, right: 16),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      book.description == "" ? AppStrings.placeholderText : book.description,
-                                      style: context.textTheme.titleSmall?.copyWith(
-                                        color: AppColors().white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              ParapgraphContainer(
+                bgColor: AppColors().darkWhite,
+                textColor: AppColors().white,
+                title: "Description",
+                description: book.description == "" ? AppStrings.placeholderText : book.description,
               ),
             ],
           ),
@@ -110,8 +72,8 @@ class BookDetailView extends StatelessWidget {
             final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
             favoriteBooks.addBook(book);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              duration: Duration(seconds: 1),
-              shape: StadiumBorder(),
+              duration: const Duration(seconds: 1),
+              shape: const StadiumBorder(),
               action: SnackBarAction(
                 backgroundColor: AppColors().darkGrey,
                 textColor: AppColors().green,
@@ -119,7 +81,7 @@ class BookDetailView extends StatelessWidget {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FavoriteBooksView(),
+                      builder: (context) => const FavoriteBooksView(),
                     )),
               ),
               content: Text('${book.title}  added to favorites'),

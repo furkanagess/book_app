@@ -8,6 +8,7 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/category.dart';
+import 'package:book_app/product/widgets/container/header_container.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,17 +64,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
       },
       onPageBuilder: (context, value) => Scaffold(
         backgroundColor: AppColors().background,
-        appBar: AppBar(
-          backgroundColor: AppColors().transparent,
-          elevation: 0,
-          centerTitle: true,
-          title: Text(
-            AppStrings.categories,
-            style: context.textTheme.headlineSmall?.copyWith(
-              color: AppColors().white,
-            ),
-          ),
-        ),
+        appBar: buildAppbar(context),
         body: SafeArea(
           child: ListView(
             children: [
@@ -92,7 +83,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
                   final category = _categories[index];
                   return Column(
                     children: [
-                      InkWell(
+                      HeaderContainer(
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
@@ -100,23 +91,9 @@ class _BookCategoryViewState extends State<BookCategoryView> {
                             ),
                           );
                         },
-                        child: Container(
-                          width: context.dynamicWidth(0.42),
-                          height: context.dynamicHeight(0.25),
-                          decoration: BoxDecoration(
-                            color: AppColors().green,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                              child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              textAlign: TextAlign.center,
-                              category.name,
-                              style: context.textTheme.titleLarge?.copyWith(color: AppColors().white),
-                            ),
-                          )),
-                        ),
+                        bgColor: AppColors().green,
+                        textColor: AppColors().white,
+                        text: category.name,
                       ),
                     ],
                   );
@@ -124,6 +101,20 @@ class _BookCategoryViewState extends State<BookCategoryView> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  AppBar buildAppbar(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors().transparent,
+      elevation: 0,
+      centerTitle: true,
+      title: Text(
+        AppStrings.categories,
+        style: context.textTheme.headlineSmall?.copyWith(
+          color: AppColors().white,
         ),
       ),
     );

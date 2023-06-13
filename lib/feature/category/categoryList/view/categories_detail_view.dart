@@ -9,6 +9,7 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/models/category.dart';
+import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -80,75 +81,32 @@ class _BookCategoriesDetailPageState extends State<BookCategoriesDetailPage> {
                         mainAxisSpacing: 20,
                       ),
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: context.paddingLow,
-                          child: GestureDetector(
-                            onTap: () => Navigator.push(
+                        return BookInfoContainer(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => BookDetailView(book: _books[index]),
                               ),
-                            ),
-                            child: Container(
-                              width: context.dynamicWidth(0.45),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: AppColors().darkWhite,
-                              ),
-                              child: Padding(
-                                padding: context.paddingLow,
-                                child: Column(
-                                  children: [
-                                    Card(
-                                      color: AppColors().background,
-                                      margin: const EdgeInsets.all(10.0),
-                                      elevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      semanticContainer: true,
-                                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                                      child: _books[index].thumbnailUrl == ""
-                                          ? Icon(
-                                              Icons.book,
-                                              size: 150,
-                                              color: AppColors().green,
-                                            )
-                                          : Image.network(
-                                              _books[index].thumbnailUrl,
-                                              fit: BoxFit.fill,
-                                              height: 200,
-                                              width: 200,
-                                            ),
-                                    ),
-                                    SizedBox(height: context.dynamicHeight(0.01)),
-                                    Expanded(
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              _books[index].title,
-                                              style: context.textTheme.titleSmall?.copyWith(
-                                                color: AppColors().white,
-                                              ),
-                                            ),
-                                            SizedBox(height: context.dynamicHeight(0.02)),
-                                            Text(
-                                              _books[index].author,
-                                              style: context.textTheme.bodyLarge?.copyWith(
-                                                color: AppColors().darkGrey,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                            );
+                          },
+                          img: _books[index].thumbnailUrl == ""
+                              ? Icon(
+                                  Icons.book,
+                                  size: 150,
+                                  color: AppColors().green,
+                                )
+                              : Image.network(
+                                  _books[index].thumbnailUrl,
+                                  fit: BoxFit.fill,
+                                  height: 200,
+                                  width: 200,
                                 ),
-                              ),
-                            ),
-                          ),
+                          bgColor: AppColors().darkWhite,
+                          title: _books[index].title,
+                          subColor: AppColors().darkGrey,
+                          subText: _books[index].author,
+                          titleColor: AppColors().white,
                         );
                       },
                     ),

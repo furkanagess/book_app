@@ -11,12 +11,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # State Management
   mobx_codegen: ^2.2.0
   mobx:   
   flutter_mobx: ^2.0.6+5
-  
-  http: ^0.13.5
   provider: ^6.0.5
+
+  # Web
+  http: ^0.13.5
+  
+  # UI 
   auto_size_text: ^3.0.0
   cupertino_icons: ^1.0.2
 

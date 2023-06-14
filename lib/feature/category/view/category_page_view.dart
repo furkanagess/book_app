@@ -9,6 +9,7 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:book_app/product/widgets/container/header_container.dart';
+import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -65,43 +66,45 @@ class _BookCategoryViewState extends State<BookCategoryView> {
       onPageBuilder: (context, value) => Scaffold(
         backgroundColor: AppColors().background,
         appBar: buildAppbar(context),
-        body: SafeArea(
-          child: ListView(
-            children: [
-              SizedBox(height: context.dynamicHeight(0.05)),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: _categories.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 1,
-                ),
-                itemBuilder: (context, index) {
-                  final category = _categories[index];
-                  return Column(
-                    children: [
-                      HeaderContainer(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => BookCategoriesDetailPage(category),
-                            ),
-                          );
-                        },
-                        bgColor: AppColors().green,
-                        textColor: AppColors().white,
-                        text: category.name,
+        body: _categories.isEmpty
+            ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors().green)
+            : SafeArea(
+                child: ListView(
+                  children: [
+                    SizedBox(height: context.dynamicHeight(0.05)),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: _categories.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 1,
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 1,
+                        mainAxisSpacing: 1,
                       ),
-                    ],
-                  );
-                },
+                      itemBuilder: (context, index) {
+                        final category = _categories[index];
+                        return Column(
+                          children: [
+                            HeaderContainer(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => BookCategoriesDetailPage(category),
+                                  ),
+                                );
+                              },
+                              bgColor: AppColors().green,
+                              textColor: AppColors().white,
+                              text: category.name,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
       ),
     );
   }

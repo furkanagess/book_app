@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -41,8 +42,9 @@ class BookInfoContainer extends StatelessWidget {
             child: Column(
               children: [
                 Card(
+                  color: AppColors().background,
                   margin: const EdgeInsets.all(10.0),
-                  elevation: 5,
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

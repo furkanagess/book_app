@@ -19,8 +19,10 @@ class AppStrings {
 
   // Search
   static const String search = "Search Books";
-  static const String searchFBooks = 'Search for books...';
+  static const String searchFBooks = 'Search';
 
+  // Detail
+  static const String description = 'Description';
   // Favorite
   static const String myFavoriteBooks = 'My Favorite Books';
 }

@@ -1,5 +1,6 @@
 import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
+import 'package:book_app/feature/search/viewModel/book_search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,7 @@ void main() => runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteBooks()),
+          ChangeNotifierProvider(create: (_) => BookSearchViewModel()),
         ],
         child: const MyApp(),
       ),

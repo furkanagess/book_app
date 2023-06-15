@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
 
 import 'dart:convert';
-import 'package:book_app/feature/category/categoryList/view/categories_detail_view.dart';
+import 'package:book_app/feature/category/categoryDetail/view/categories_detail_view.dart';
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';

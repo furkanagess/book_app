@@ -45,20 +45,12 @@ class _BookCategoriesDetailPageState extends State<BookCategoriesDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_books == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
     return BaseView<CategoryListViewModel>(
       viewModel: CategoryListViewModel(),
       onModelReady: (model) {
         model.setContext(context);
       },
-      onPageBuilder: (context, value) => Scaffold(
+      onPageBuilder: (BuildContext context, CategoryListViewModel viewModel) => Scaffold(
           backgroundColor: AppColors().background,
           appBar: AppBar(
             title: Text(widget.category.name),

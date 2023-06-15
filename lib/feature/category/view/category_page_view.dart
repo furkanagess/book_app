@@ -50,14 +50,6 @@ class _BookCategoryViewState extends State<BookCategoryView> {
 
   @override
   Widget build(BuildContext context) {
-    if (_categories == null) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
     return BaseView<CategoryViewModel>(
       viewModel: CategoryViewModel(),
       onModelReady: (model) {

@@ -16,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   int currentPage = 0;
   final pages = [
     const BookHomeView(),
-    BookCategoryView(),
+    const BookCategoryView(),
     const FavoriteBooksView(),
     const BookSearchView(),
   ];

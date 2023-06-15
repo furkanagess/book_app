@@ -23,7 +23,7 @@ class BookDetailView extends StatelessWidget {
       onModelReady: (model) {
         model.setContext(context);
       },
-      onPageBuilder: (context, value) => Scaffold(
+      onPageBuilder: (BuildContext context, BookDetailViewModel viewModel) => Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         backgroundColor: AppColors().background,
         appBar: buildAppbar(),

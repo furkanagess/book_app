@@ -14,7 +14,6 @@ class FavoriteBooksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final favoriteBooks = Provider.of<FavoriteBooks>(context);
-
     return BaseView<FavoriteViewModel>(
       viewModel: FavoriteViewModel(),
       onModelReady: (model) {

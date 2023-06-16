@@ -56,7 +56,7 @@ class BookDetailView extends StatelessWidget {
         favoriteBooks.addBook(book);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("${book.title} added to favorites"),
-          duration: Duration(seconds: 2),
+          duration: const Duration(seconds: 2),
           action: SnackBarAction(
             backgroundColor: AppColors().darkGrey,
             textColor: AppColors().green,

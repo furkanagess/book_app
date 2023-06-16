@@ -1,7 +1,8 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_print
+
 import 'package:book_app/feature/search/service/search_book_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 part 'book_search_view_model.g.dart';

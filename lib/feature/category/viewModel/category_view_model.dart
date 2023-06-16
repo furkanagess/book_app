@@ -1,6 +1,10 @@
+// ignore_for_file: avoid_print, library_private_types_in_public_api
+
 import 'dart:convert';
 
 import 'package:book_app/product/base/base_view_model.dart';
+import 'package:book_app/product/constants/api_types.dart';
+import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -15,6 +19,7 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
 
   @override
   void init() {}
+  List<Book> books = [];
   List<BookCategory> categories = [];
   bool isLoading = false;
 
@@ -24,7 +29,7 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
 
     try {
       final response = await http.get(
-        Uri.parse('https://www.googleapis.com/books/v1/volumes?q=all'),
+        Uri.parse(ApiUrl.category),
       );
 
       if (response.statusCode == 200) {
@@ -44,6 +49,39 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
     } catch (e) {
       print('Error: $e');
     }
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> fetchBooksByCategory(String? category) async {
+    isLoading = true;
+    notifyListeners();
+
+    try {
+      final response = await http.get(
+        Uri.parse(ApiUrl.categoryDetail),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        final List<dynamic> items = (data['items'] as List<dynamic>).cast<dynamic>();
+
+        books = items
+            .map((item) => Book(
+                  title: item['volumeInfo']['title'] ?? 'Unknown Title',
+                  thumbnailUrl: item['volumeInfo']['imageLinks'] != null ? item['volumeInfo']['imageLinks']['thumbnail'] ?? '' : '',
+                  description: item['volumeInfo']['description'] ?? '',
+                  author: item['volumeInfo']['authors'] != null ? item['volumeInfo']['authors'][0] ?? '' : 'Unknown Author',
+                ))
+            .toList();
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+
     isLoading = false;
     notifyListeners();
   }

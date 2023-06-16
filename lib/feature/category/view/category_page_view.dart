@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api
+// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:book_app/feature/category/categoryDetail/view/categories_detail_view.dart';
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
@@ -11,40 +11,8 @@ import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BookCategoryView extends StatefulWidget {
+class BookCategoryView extends StatelessWidget {
   const BookCategoryView({super.key});
-
-  @override
-  _BookCategoryViewState createState() => _BookCategoryViewState();
-}
-
-class _BookCategoryViewState extends State<BookCategoryView> {
-  // List<BookCategory> _categories = [];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-
-  //   _fetchCategories();
-  // }
-
-  // Future<void> _fetchCategories() async {
-  //   final response = await http.get(Uri.parse('https://www.googleapis.com/books/v1/volumes?q=all'));
-  //   if (response.statusCode == 200) {
-  //     final body = json.decode(response.body);
-  //     final categories = <String>{};
-  //     for (final item in body['items']) {
-  //       if (item['volumeInfo']['categories'] != null) {
-  //         categories.addAll(List<String>.from(item['volumeInfo']['categories']));
-  //       }
-  //     }
-  //     setState(() {
-  //       _categories = categories.map((category) => BookCategory(name: category, id: category.toLowerCase().replaceAll(' ', '-'))).toList();
-  //     });
-  //   } else {
-  //     throw Exception('Failed to fetch categories');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +22,11 @@ class _BookCategoryViewState extends State<BookCategoryView> {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
-        final categoryProvider = Provider.of<CategoryViewModel>(context);
+        final categoryModel = Provider.of<CategoryViewModel>(context);
         return Scaffold(
           backgroundColor: AppColors().background,
           appBar: buildAppbar(context),
-          body: categoryProvider.isLoading
+          body: categoryModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors().green)
               : SafeArea(
                   child: ListView(
@@ -67,7 +35,7 @@ class _BookCategoryViewState extends State<BookCategoryView> {
                       GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: categoryProvider.categories.length,
+                        itemCount: categoryModel.categories.length,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           childAspectRatio: 1,
                           crossAxisCount: 2,
@@ -75,16 +43,17 @@ class _BookCategoryViewState extends State<BookCategoryView> {
                           mainAxisSpacing: 1,
                         ),
                         itemBuilder: (context, index) {
-                          final category = categoryProvider.categories[index];
+                          final category = categoryModel.categories[index];
                           return Column(
                             children: [
                               HeaderContainer(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => BookCategoriesDetailPage(category),
-                                    ),
-                                  );
+                                onTap: () async {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => BookCategoriesDetailPage(category: category),
+                                  ));
+
+                                  final bookModel = Provider.of<CategoryViewModel>(context, listen: false);
+                                  await bookModel.fetchBooksByCategory(category.name);
                                 },
                                 bgColor: AppColors().green,
                                 textColor: AppColors().white,

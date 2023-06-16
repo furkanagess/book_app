@@ -3,6 +3,7 @@ import 'package:book_app/feature/favorite/view/favorite_view.dart';
 import 'package:book_app/feature/home/view/book_home_view.dart';
 import 'package:book_app/feature/search/view/book_search_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
+import 'package:book_app/product/constants/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -50,25 +51,25 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(
               Icons.home,
             ),
-            label: "Home",
+            label: AppStrings.homeLabel,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.book,
             ),
-            label: "Categories",
+            label: AppStrings.categoriesLabel,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.favorite,
             ),
-            label: "Favorites",
+            label: AppStrings.favoritesLabel,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
             ),
-            label: "Search",
+            label: AppStrings.searcLabel,
           ),
         ],
       ),

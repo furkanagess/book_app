@@ -5,6 +5,7 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
+import 'package:book_app/product/models/book.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,14 +22,7 @@ class FavoriteBooksView extends StatelessWidget {
       },
       onPageBuilder: (context, value) => Scaffold(
         backgroundColor: AppColors().background,
-        appBar: AppBar(
-          backgroundColor: AppColors().background,
-          elevation: 0,
-          centerTitle: true,
-          title: const Text(
-            AppStrings.myFavoriteBooks,
-          ),
-        ),
+        appBar: buildAppbar(),
         body: SafeArea(
           child: ListView(
             children: [
@@ -64,63 +58,16 @@ class FavoriteBooksView extends StatelessWidget {
                             children: [
                               Expanded(
                                 flex: 11,
-                                child: Card(
-                                  color: AppColors().background,
-                                  margin: const EdgeInsets.all(10.0),
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  semanticContainer: true,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: book.thumbnailUrl == ""
-                                      ? Icon(
-                                          Icons.book,
-                                          size: 150,
-                                          color: AppColors().green,
-                                        )
-                                      : Image.network(
-                                          book.thumbnailUrl,
-                                          fit: BoxFit.fill,
-                                          height: 200,
-                                          width: 200,
-                                        ),
-                                ),
+                                child: cardImage(book),
                               ),
                               SizedBox(height: context.dynamicHeight(0.01)),
                               Expanded(
                                 flex: 3,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        book.title,
-                                        style: context.textTheme.titleSmall?.copyWith(
-                                          color: AppColors().white,
-                                        ),
-                                      ),
-                                      SizedBox(height: context.dynamicHeight(0.02)),
-                                      Text(
-                                        book.author,
-                                        style: context.textTheme.bodyLarge?.copyWith(
-                                          color: AppColors().darkGrey,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                child: scrollableText(book, context),
                               ),
                               Expanded(
-                                child: IconButton(
-                                  onPressed: () {
-                                    favoriteBooks.removeBook(book);
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: AppColors().green,
-                                  ),
-                                ),
+                                flex: 2,
+                                child: deleteButton(favoriteBooks, book),
                               ),
                               SizedBox(height: context.dynamicHeight(0.01)),
                             ],
@@ -134,6 +81,82 @@ class FavoriteBooksView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Card cardImage(Book book) {
+    return Card(
+      color: AppColors().background,
+      margin: const EdgeInsets.all(10.0),
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: book.thumbnailUrl == ""
+          ? Icon(
+              Icons.book,
+              size: 150,
+              color: AppColors().green,
+            )
+          : Image.network(
+              book.thumbnailUrl,
+              fit: BoxFit.fill,
+              height: 200,
+              width: 200,
+            ),
+    );
+  }
+
+  SingleChildScrollView scrollableText(Book book, BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            book.title,
+            style: context.textTheme.titleSmall?.copyWith(
+              color: AppColors().white,
+            ),
+          ),
+          SizedBox(height: context.dynamicHeight(0.02)),
+          Text(
+            book.author,
+            style: context.textTheme.bodyLarge?.copyWith(
+              color: AppColors().darkGrey,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  CircleAvatar deleteButton(FavoriteBooks favoriteBooks, Book book) {
+    return CircleAvatar(
+      radius: 460,
+      backgroundColor: AppColors().darkGrey,
+      child: IconButton(
+        onPressed: () {
+          favoriteBooks.removeBook(book);
+        },
+        icon: Icon(
+          Icons.delete,
+          size: 20,
+          color: AppColors().green,
+        ),
+      ),
+    );
+  }
+
+  AppBar buildAppbar() {
+    return AppBar(
+      backgroundColor: AppColors().background,
+      elevation: 0,
+      centerTitle: true,
+      title: const Text(
+        AppStrings.myFavoriteBooks,
       ),
     );
   }

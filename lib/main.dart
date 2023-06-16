@@ -1,3 +1,4 @@
+import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
 import 'package:book_app/feature/search/viewModel/book_search_view_model.dart';
@@ -9,6 +10,7 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider(create: (_) => FavoriteBooks()),
           ChangeNotifierProvider(create: (_) => BookSearchViewModel()),
+          ChangeNotifierProvider(create: (_) => CategoryViewModel()..fetchBookCategories()),
         ],
         child: const MyApp(),
       ),

@@ -55,8 +55,8 @@ class BookDetailView extends StatelessWidget {
         final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
         favoriteBooks.addBook(book);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: const Duration(seconds: 2),
-          shape: const StadiumBorder(),
+          content: Text("${book.title} added to favorites"),
+          duration: Duration(seconds: 2),
           action: SnackBarAction(
             backgroundColor: AppColors().darkGrey,
             textColor: AppColors().green,
@@ -67,7 +67,6 @@ class BookDetailView extends StatelessWidget {
                   builder: (context) => const FavoriteBooksView(),
                 )),
           ),
-          content: Text('${book.title}  added to favorites'),
         ));
       },
       child: Icon(Icons.favorite, color: AppColors().darkWhite),

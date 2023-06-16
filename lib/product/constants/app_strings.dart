@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 @immutable
 class AppStrings {
   const AppStrings._();
-  static const String appName = "Library";
+
+  // General
+  static const String appName = "Book App";
   static const String wait = "Please wait... ";
-  static const String placeholderText = "This doesn't have any description. Please come later and check this.";
+  static const String placeholderText = "This book doesn't have any description. Please come later and check this.";
+
   // Home
   static const String discover = "Discover Books";
-  static const String categories = "Book Categories";
   static const String homeHeader = "Have a good day";
   static const String trending = "Trendings";
   static const String seeMore = "See more";
   static const String recommended = "Recommended";
-  static const String welcome = "Welcome";
-  static const String subHeader =
-      "Enjoy your reading. \n You can access the type of books you want \n add the books you want to your favorites \n and look again later";
+
+  // Category
+  static const String categories = "Book Categories";
 
   // Search
   static const String search = "Search Books";
@@ -25,4 +27,10 @@ class AppStrings {
   static const String description = 'Description';
   // Favorite
   static const String myFavoriteBooks = 'My Favorite Books';
+
+  // Bottom Navigation Bar
+  static const String homeLabel = 'Home';
+  static const String categoriesLabel = 'Categories';
+  static const String favoritesLabel = 'Favorites';
+  static const String searcLabel = 'Search';
 }

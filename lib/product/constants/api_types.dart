@@ -8,4 +8,6 @@ class ApiUrl {
   static const String trending = 'https://www.googleapis.com/books/v1/volumes?q=trending';
   static const String googleApis = 'www.googleapis.com';
   static const String v1Volumes = '/books/v1/volumes';
+  static const String category = 'https://www.googleapis.com/books/v1/volumes?q=red';
+  static const String categoryDetail = 'https://www.googleapis.com/books/v1/volumes?q=flutter+subject:$category';
 }

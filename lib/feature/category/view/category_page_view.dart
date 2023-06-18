@@ -51,7 +51,6 @@ class BookCategoryView extends StatelessWidget {
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => BookCategoriesDetailPage(category: category),
                                   ));
-
                                   final bookModel = Provider.of<CategoryViewModel>(context, listen: false);
                                   await bookModel.fetchBooksByCategory(category.name);
                                 },

@@ -53,13 +53,13 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
     notifyListeners();
   }
 
-  Future<void> fetchBooksByCategory(String? category) async {
+  Future<void> fetchBooksByCategory(String category) async {
     isLoading = true;
     notifyListeners();
 
     try {
       final response = await http.get(
-        Uri.parse(ApiUrl.categoryDetail),
+        Uri.parse(ApiUrl.categoryDetail + category),
       );
 
       if (response.statusCode == 200) {

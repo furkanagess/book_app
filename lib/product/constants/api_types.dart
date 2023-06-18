@@ -14,5 +14,5 @@ class ApiUrl {
 
   // Category
   static const String category = 'https://www.googleapis.com/books/v1/volumes?q=red';
-  static const String categoryDetail = 'https://www.googleapis.com/books/v1/volumes?q=flutter+subject:$category';
+  static const String categoryDetail = 'https://www.googleapis.com/books/v1/volumes?q=flutter+subject:';
 }

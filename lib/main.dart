@@ -1,6 +1,7 @@
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
+import 'package:book_app/feature/onboard/view/onboard_view.dart';
 import 'package:book_app/feature/search/viewModel/book_search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Book App',
-      home: MainPage(),
+      home: OnboardView(),
     );
   }
 }

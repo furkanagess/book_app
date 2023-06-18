@@ -1,6 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:book_app/feature/home/view/book_home_view.dart';
+import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
@@ -30,18 +30,18 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
     onBoardPages.addAll(
       [
         OnBoardModel(
-          title: "LocaleKeys.onBoard_page3_title.locale,",
-          description: "LocaleKeys.onBoard_page1_description.locale,",
-          imagePath: SVGConstants.instance.bookCategory,
+          title: "Find Easily",
+          description: "Search and find the books that appeal to you the most among thousands of books",
+          imagePath: SVGConstants.instance.book,
         ),
         OnBoardModel(
-          title: "LocaleKeys.onBoard_page3_title.locale,",
-          description: "LocaleKeys.onBoard_page1_description.locale,",
+          title: "Add to Library",
+          description: "Add your favorite books to your library with one click to find them easier another time",
           imagePath: SVGConstants.instance.bookFavorite,
         ),
         OnBoardModel(
-          title: "LocaleKeys.onBoard_page3_title.locale,",
-          description: "LocaleKeys.onBoard_page1_description.locale,",
+          title: "Read Book",
+          description: "You can search for books and categories at any time, read more with the library",
           imagePath: SVGConstants.instance.bookLover,
         ),
       ],
@@ -52,7 +52,7 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
     Navigator.push(
         context as BuildContext,
         MaterialPageRoute(
-          builder: (context) => const BookHomeView(),
+          builder: (context) => const MainPage(),
         ));
   }
 }

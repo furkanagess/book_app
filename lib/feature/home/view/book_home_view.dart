@@ -126,6 +126,7 @@ class _BookHomeViewState extends State<BookHomeView> {
 
   AppBar _buildAppBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,

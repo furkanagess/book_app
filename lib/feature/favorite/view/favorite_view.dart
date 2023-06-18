@@ -65,11 +65,11 @@ class FavoriteBooksView extends StatelessWidget {
                                 flex: 3,
                                 child: scrollableText(book, context),
                               ),
+                              SizedBox(height: context.dynamicHeight(0.01)),
                               Expanded(
                                 flex: 2,
                                 child: deleteButton(favoriteBooks, book),
                               ),
-                              SizedBox(height: context.dynamicHeight(0.01)),
                             ],
                           ),
                         ),

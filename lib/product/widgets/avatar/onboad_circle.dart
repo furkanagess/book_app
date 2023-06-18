@@ -1,3 +1,4 @@
+import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,8 @@ class OnBoardCircle extends StatelessWidget {
     return Padding(
       padding: context.paddingLow,
       child: CircleAvatar(
-        backgroundColor: Colors.black.withOpacity(isSelected ? 1 : 0.2),
-        radius: isSelected ? 8 : 5,
+        backgroundColor: AppColors().green.withOpacity(isSelected ? 1 : 0.2),
+        radius: isSelected ? 6 : 3,
       ),
     );
   }

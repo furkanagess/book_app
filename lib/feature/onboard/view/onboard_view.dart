@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book_app/feature/home/view/book_home_view.dart';
+import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
@@ -90,20 +90,20 @@ class OnboardView extends StatelessWidget {
 
   FloatingActionButton buildSkipButton(BuildContext context, OnboardViewModel viewModel) {
     return FloatingActionButton(
-      elevation: 10,
-      backgroundColor: Colors.black,
+      elevation: 0,
+      backgroundColor: Colors.green,
       child: Text(
         "Skip",
         style: context.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
-          color: Colors.red,
+          color: Colors.white,
         ),
       ),
       onPressed: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BookHomeView(),
+              builder: (context) => const MainPage(),
             ));
       },
     );
@@ -114,7 +114,10 @@ class OnboardView extends StatelessWidget {
       children: [
         Expanded(
           flex: 7,
-          child: buildSVGPicture(model.imagePath),
+          child: Padding(
+            padding: context.paddingNormalHorizontal,
+            child: buildSVGPicture(model.imagePath),
+          ),
         ),
         buildColumnDescription(context, model),
       ],
@@ -132,7 +135,7 @@ class OnboardView extends StatelessWidget {
             model.title,
             style: context.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: Colors.red,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: context.height * 0.03),
@@ -140,7 +143,7 @@ class OnboardView extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 4,
             model.description,
-            style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400, color: Colors.green),
+            style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400, color: Colors.white),
           ),
         ],
       ),

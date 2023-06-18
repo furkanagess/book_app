@@ -1,0 +1,58 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:book_app/feature/home/view/book_home_view.dart';
+import 'package:book_app/product/base/base_view_model.dart';
+import 'package:book_app/product/constants/svg_constants.dart';
+import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
+
+import '../model/onboard_model.dart';
+
+part 'onboard_view_model.g.dart';
+
+class OnboardViewModel = _OnboardViewModelBase with _$OnboardViewModel;
+
+abstract class _OnboardViewModelBase with Store, BaseViewModel {
+  @override
+  void setContext(BuildContext context) => viewModelContext = context;
+
+  @observable
+  int currentIndex = 0;
+
+  @action
+  void changeCurrentIndex(int value) {
+    currentIndex = value;
+  }
+
+  List<OnBoardModel> onBoardPages = [];
+  @override
+  void init() {
+    onBoardPages.addAll(
+      [
+        OnBoardModel(
+          title: "LocaleKeys.onBoard_page3_title.locale,",
+          description: "LocaleKeys.onBoard_page1_description.locale,",
+          imagePath: SVGConstants.instance.bookCategory,
+        ),
+        OnBoardModel(
+          title: "LocaleKeys.onBoard_page3_title.locale,",
+          description: "LocaleKeys.onBoard_page1_description.locale,",
+          imagePath: SVGConstants.instance.bookFavorite,
+        ),
+        OnBoardModel(
+          title: "LocaleKeys.onBoard_page3_title.locale,",
+          description: "LocaleKeys.onBoard_page1_description.locale,",
+          imagePath: SVGConstants.instance.bookLover,
+        ),
+      ],
+    );
+  }
+
+  void completeToOnBoard() {
+    Navigator.push(
+        context as BuildContext,
+        MaterialPageRoute(
+          builder: (context) => const BookHomeView(),
+        ));
+  }
+}

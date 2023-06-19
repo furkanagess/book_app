@@ -36,11 +36,28 @@ A new Flutter project.
 
 <table>
   <tr>
-    <td>Home Page</td>
-  
+    <td>Home Page One</td>
+   <td>Home Page Two</td>
   </tr>  
   <tr>
     <td><img src="github/screenshots/book-home.png" width=270 height=480></td>
-  
+   <td><img src="github/screenshots/book-home-2.png" width=270 height=480></td>
   </tr>
 </table>
+
+### Book Categories Page
+- This page lists the book categories obtained from the Google Books API. When a category is clicked, the page will display the books belonging to that category.
+
+<table>
+  <tr>
+    <td>Categories Page </td>
+   <td>Loading</td> 
+    <td>Categories List</td>
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/book-categories.png" width=270 height=480></td>
+   <td><img src="github/screenshots/book-load.png" width=270 height=480></td>
+    <td><img src="github/screenshots/book-categories-list.png" width=270 height=480></td>
+  </tr>
+</table>
+

@@ -36,11 +36,75 @@ A new Flutter project.
 
 <table>
   <tr>
-    <td>Home Page</td>
-  
+    <td>Home Page One</td>
+   <td>Home Page Two</td>
   </tr>  
   <tr>
     <td><img src="github/screenshots/book-home.png" width=270 height=480></td>
-  
+   <td><img src="github/screenshots/book-home-2.png" width=270 height=480></td>
   </tr>
 </table>
+
+### Book Categories Page
+- This page lists the book categories obtained from the Google Books API. When a category is clicked, the page will display the books belonging to that category.
+
+<table>
+  <tr>
+    <td>Categories Page </td>
+   <td>Loading</td> 
+    <td>Categories List</td>
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/book-categories.png" width=270 height=480></td>
+   <td><img src="github/screenshots/book-load.png" width=270 height=480></td>
+    <td><img src="github/screenshots/book-categories-list.png" width=270 height=480></td>
+  </tr>
+</table>
+
+### My Favorite Books Page
+- When a book is clicked in the application, it will navigate to the book detail page. On the book detail page, there will be a heart icon that allows you to add the selected book to your favorites section. When you click the heart icon, the chosen book will be automatically listed in the "My Favorite Books" page. Later, you can visit this page and remove any book you desire from your favorites.
+
+<table>
+  <tr>
+    <td>Favorites Page </td>
+
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/book-favorite-page.png" width=270 height=480></td>
+
+  </tr>
+</table>
+
+### Book Detail Page
+- On the book detail page, there will be a heart icon that allows you to add the selected book to your favorites section. When you click the heart icon, the chosen book will be automatically listed in the "My Favorite Books" page. Later, you can visit this page and remove any book you desire from your favorites.
+
+<table>
+  <tr>
+    <td>Book Detail Page </td>
+      <td>Book Detail Bottomsheet </td>
+
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/book-detail-page.png" width=270 height=480></td>
+<td><img src="github/screenshots/book-bottom-shhet.png" width=270 height=480></td>
+  </tr>
+</table>
+
+### Search Page
+- This is the page where you can search for any desired book, category, or author. You can enter any keyword or term in the search bar to access the desired information.
+
+
+<table>
+  <tr>
+    <td>Book Search Page </td>
+      <td>Book Search List </td>
+
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/book-search.png" width=270 height=480></td>
+<td><img src="github/screenshots/book-search-list.png" width=270 height=480></td>
+  </tr>
+</table>
+
+## Technical Stuffs ![image](https://github.com/furkanagess/book_app/assets/92018394/2989c8d8-9f1e-4ed9-8f93-20e28e8a61bf)
+

@@ -15,9 +15,9 @@ class Book {
     final volumeInfo = json['volumeInfo'];
     return Book(
       title: volumeInfo['title'],
-      author: volumeInfo['authors']?.join(', ') ?? 'Unknown',
+      author: volumeInfo['authors']?.join(', ') ?? 'Unknown Author',
       thumbnailUrl: volumeInfo['imageLinks']?['thumbnail'] ?? '',
-      description: volumeInfo['description'] ?? '',
+      description: volumeInfo['description'] ?? "",
     );
   }
 }

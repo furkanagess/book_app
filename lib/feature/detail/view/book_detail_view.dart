@@ -78,7 +78,6 @@ class BookDetailView extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
-      automaticallyImplyLeading: false,
       title: Text(
         book.title,
       ),

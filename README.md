@@ -105,3 +105,6 @@ A new Flutter project.
 <td><img src="github/screenshots/book-search-list.png" width=270 height=480></td>
   </tr>
 </table>
+
+## Technical Stuffs ![image](https://github.com/furkanagess/book_app/assets/92018394/2989c8d8-9f1e-4ed9-8f93-20e28e8a61bf)
+

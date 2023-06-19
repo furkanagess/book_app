@@ -27,15 +27,15 @@ class BookCategoriesDetailPage extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
         return Scaffold(
-          backgroundColor: AppColors().background,
+          backgroundColor: AppColors.background,
           appBar: AppBar(
             title: Text(category.name),
-            backgroundColor: AppColors().transparent,
+            backgroundColor: AppColors.transparent,
             elevation: 0,
             centerTitle: true,
           ),
           body: bookModel.isLoading
-              ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors().green)
+              ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
               : SafeArea(
                   child: ListView(
                     children: [
@@ -64,7 +64,7 @@ class BookCategoriesDetailPage extends StatelessWidget {
                                 ? Icon(
                                     Icons.book,
                                     size: 150,
-                                    color: AppColors().green,
+                                    color: AppColors.green,
                                   )
                                 : Image.network(
                                     book.thumbnailUrl,
@@ -72,11 +72,11 @@ class BookCategoriesDetailPage extends StatelessWidget {
                                     height: 200,
                                     width: 200,
                                   ),
-                            bgColor: AppColors().darkWhite,
+                            bgColor: AppColors.darkWhite,
                             title: book.title,
-                            subColor: AppColors().darkGrey,
+                            subColor: AppColors.darkGrey,
                             subText: book.author,
-                            titleColor: AppColors().white,
+                            titleColor: AppColors.white,
                           );
                         },
                       ),

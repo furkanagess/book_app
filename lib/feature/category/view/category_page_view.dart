@@ -24,10 +24,10 @@ class BookCategoryView extends StatelessWidget {
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
         final categoryModel = Provider.of<CategoryViewModel>(context);
         return Scaffold(
-          backgroundColor: AppColors().background,
+          backgroundColor: AppColors.background,
           appBar: buildAppbar(context),
           body: categoryModel.isLoading
-              ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors().green)
+              ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
               : SafeArea(
                   child: ListView(
                     children: [
@@ -54,8 +54,8 @@ class BookCategoryView extends StatelessWidget {
                                   final bookModel = Provider.of<CategoryViewModel>(context, listen: false);
                                   await bookModel.fetchBooksByCategory(category.name);
                                 },
-                                bgColor: AppColors().green,
-                                textColor: AppColors().white,
+                                bgColor: AppColors.green,
+                                textColor: AppColors.white,
                                 text: category.name,
                               ),
                             ],
@@ -72,13 +72,14 @@ class BookCategoryView extends StatelessWidget {
 
   AppBar buildAppbar(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors().transparent,
+      backgroundColor: AppColors.transparent,
       elevation: 0,
       centerTitle: true,
+      automaticallyImplyLeading: false,
       title: Text(
         AppStrings.categories,
         style: context.textTheme.headlineSmall?.copyWith(
-          color: AppColors().white,
+          color: AppColors.white,
         ),
       ),
     );

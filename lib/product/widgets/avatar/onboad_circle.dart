@@ -11,7 +11,7 @@ class OnBoardCircle extends StatelessWidget {
     return Padding(
       padding: context.paddingLow,
       child: CircleAvatar(
-        backgroundColor: AppColors().green.withOpacity(isSelected ? 1 : 0.2),
+        backgroundColor: AppColors.green.withOpacity(isSelected ? 1 : 0.2),
         radius: isSelected ? 6 : 3,
       ),
     );

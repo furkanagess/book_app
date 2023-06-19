@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class ApiUrl {
   const ApiUrl._();
   // Home
-  static const String flutterDev = 'https://www.googleapis.com/books/v1/volumes?q=flutter%20development';
-  static const String programming = 'https://www.googleapis.com/books/v1/volumes?q=programming';
+  static const String bestseller = 'https://www.googleapis.com/books/v1/volumes?q=bestseller';
   static const String trending = 'https://www.googleapis.com/books/v1/volumes?q=trending';
 
   // Search

@@ -29,7 +29,7 @@ class _BookSearchViewState extends State<BookSearchView> {
       onPageBuilder: (BuildContext context, BookSearchViewModel viewModel) {
         final bookListViewModel = Provider.of<BookSearchViewModel>(context);
         return Scaffold(
-          backgroundColor: AppColors().background,
+          backgroundColor: AppColors.background,
           appBar: buildAppBar(),
           body: Column(
             children: [
@@ -38,8 +38,8 @@ class _BookSearchViewState extends State<BookSearchView> {
                 child: StadiumCustomTextField(
                   controller: _searchController,
                   hintText: AppStrings.searchFBooks,
-                  defaultColor: AppColors().green,
-                  hintColor: AppColors().background,
+                  defaultColor: AppColors.green,
+                  hintColor: AppColors.background,
                   iconTap: () {
                     final query = _searchController.text;
                     bookListViewModel.searchBooks(query);
@@ -76,7 +76,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                             ? Icon(
                                 Icons.book,
                                 size: 150,
-                                color: AppColors().green,
+                                color: AppColors.green,
                               )
                             : Image.network(
                                 bookListViewModel.books[index].thumbnailUrl,
@@ -84,11 +84,11 @@ class _BookSearchViewState extends State<BookSearchView> {
                                 height: 200,
                                 width: 200,
                               ),
-                        bgColor: AppColors().darkWhite,
+                        bgColor: AppColors.darkWhite,
                         title: book.title,
-                        subColor: AppColors().darkGrey,
+                        subColor: AppColors.darkGrey,
                         subText: book.author,
-                        titleColor: AppColors().white,
+                        titleColor: AppColors.white,
                       );
                     },
                   ),
@@ -99,80 +99,12 @@ class _BookSearchViewState extends State<BookSearchView> {
         );
       },
     );
-    // return BaseView<SearchViewModel>(
-    //   viewModel: SearchViewModel(),
-    //   onModelReady: (model) {
-    //     model.setContext(context);
-    //   },
-    //   onPageBuilder: (context, value) => Scaffold(
-    //     backgroundColor: AppColors().background,
-    //     appBar: buildAppBar(),
-    //     body: Column(
-    //       children: [
-    //         Padding(
-    //           padding: context.paddingNormal,
-    //           child: StadiumCustomTextField(
-    //             controller: _searchController,
-    //             hintText: AppStrings.searchFBooks,
-    //             defaultColor: AppColors().green,
-    //             hintColor: AppColors().background,
-    //             iconTap: _searchBooks,
-    //             onSubmit: () => _searchBooks(),
-    //           ),
-    //         ),
-    //         Expanded(
-    //           child: SingleChildScrollView(
-    //             child: GridView.builder(
-    //               shrinkWrap: true,
-    //               physics: const NeverScrollableScrollPhysics(),
-    //               itemCount: _books.length,
-    //               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    //                 childAspectRatio: 0.6,
-    //                 crossAxisCount: 2,
-    //                 crossAxisSpacing: 1,
-    //                 mainAxisSpacing: 20,
-    //               ),
-    //               itemBuilder: (context, index) {
-    //                 final book = _books[index];
-    //                 return BookInfoContainer(
-    //                   onTap: () {
-    //                     Navigator.of(context).push(
-    //                       MaterialPageRoute(
-    //                         builder: (_) => BookDetailView(book: book),
-    //                       ),
-    //                     );
-    //                   },
-    //                   img: _books[index].thumbnailUrl == ""
-    //                       ? Icon(
-    //                           Icons.book,
-    //                           size: 150,
-    //                           color: AppColors().green,
-    //                         )
-    //                       : Image.network(
-    //                           _books[index].thumbnailUrl,
-    //                           fit: BoxFit.fill,
-    //                           height: 200,
-    //                           width: 200,
-    //                         ),
-    //                   bgColor: AppColors().darkWhite,
-    //                   title: book.title,
-    //                   subColor: AppColors().darkGrey,
-    //                   subText: book.author,
-    //                   titleColor: AppColors().white,
-    //                 );
-    //               },
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
   AppBar buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors().background,
+      backgroundColor: AppColors.background,
+      automaticallyImplyLeading: false,
       elevation: 0,
       title: const Text(
         AppStrings.search,

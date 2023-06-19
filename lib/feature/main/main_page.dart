@@ -26,17 +26,17 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors().background,
-        selectedItemColor: AppColors().green,
-        unselectedItemColor: AppColors().darkGrey,
+        backgroundColor: AppColors.background,
+        selectedItemColor: AppColors.green,
+        unselectedItemColor: AppColors.darkGrey,
         unselectedLabelStyle: TextStyle(
-          color: AppColors().darkWhite,
+          color: AppColors.darkWhite,
         ),
         unselectedIconTheme: IconThemeData(
-          color: AppColors().darkGrey,
+          color: AppColors.darkGrey,
         ),
         selectedIconTheme: IconThemeData(
-          color: AppColors().green,
+          color: AppColors.green,
           size: 30,
         ),
         currentIndex: currentPage,

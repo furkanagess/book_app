@@ -25,7 +25,7 @@ class BookDetailView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, BookDetailViewModel viewModel) => Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        backgroundColor: AppColors().background,
+        backgroundColor: AppColors.background,
         appBar: buildAppbar(),
         body: Padding(
           padding: context.paddingLowHorizontal,
@@ -34,8 +34,8 @@ class BookDetailView extends StatelessWidget {
             children: [
               HeaderBookImage(book: book),
               ParapgraphContainer(
-                bgColor: AppColors().darkWhite,
-                textColor: AppColors().white,
+                bgColor: AppColors.darkWhite,
+                textColor: AppColors.white,
                 title: AppStrings.description,
                 description: book.description == "" ? AppStrings.placeholderText : book.description,
               ),
@@ -50,7 +50,7 @@ class BookDetailView extends StatelessWidget {
   FloatingActionButton fabButton(BuildContext context) {
     return FloatingActionButton(
       elevation: 0,
-      backgroundColor: AppColors().green,
+      backgroundColor: AppColors.green,
       onPressed: () {
         final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
         favoriteBooks.addBook(book);
@@ -58,8 +58,8 @@ class BookDetailView extends StatelessWidget {
           content: Text("${book.title} added to favorites"),
           duration: const Duration(seconds: 2),
           action: SnackBarAction(
-            backgroundColor: AppColors().darkGrey,
-            textColor: AppColors().green,
+            backgroundColor: AppColors.darkGrey,
+            textColor: AppColors.green,
             label: AppStrings.myFavoriteBooks,
             onPressed: () => Navigator.push(
                 context,
@@ -69,7 +69,7 @@ class BookDetailView extends StatelessWidget {
           ),
         ));
       },
-      child: Icon(Icons.favorite, color: AppColors().darkWhite),
+      child: Icon(Icons.favorite, color: AppColors.darkWhite),
     );
   }
 
@@ -78,6 +78,7 @@ class BookDetailView extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       centerTitle: true,
+      automaticallyImplyLeading: false,
       title: Text(
         book.title,
       ),
@@ -97,7 +98,7 @@ class HeaderBookImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Card(
-        color: AppColors().darkWhite,
+        color: AppColors.darkWhite,
         margin: const EdgeInsets.all(10.0),
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -109,7 +110,7 @@ class HeaderBookImage extends StatelessWidget {
             ? Icon(
                 Icons.book,
                 size: 250,
-                color: AppColors().green,
+                color: AppColors.green,
               )
             : Image.network(
                 book.thumbnailUrl,

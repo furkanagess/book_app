@@ -1,17 +1,17 @@
-import 'dart:convert';
-
 import 'package:book_app/feature/home/viewModel/home_view_model.dart';
 
 import 'package:book_app/product/base/base_view.dart';
-import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
+import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
-import 'package:book_app/product/models/book.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
+import 'package:book_app/product/widgets/text/row_icon_text.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class BookHomeView extends StatefulWidget {
   const BookHomeView({super.key});
@@ -21,24 +21,6 @@ class BookHomeView extends StatefulWidget {
 }
 
 class _BookHomeViewState extends State<BookHomeView> {
-  List<Book> books = [];
-
-  @override
-  void initState() {
-    super.initState();
-    programmingBooks();
-  }
-
-  void programmingBooks() async {
-    final response = await http.get(Uri.parse(ApiUrl.programming));
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
-      setState(() {
-        books = List<Book>.from(json['items'].map((bookJson) => Book.fromJson(bookJson)));
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(
@@ -46,28 +28,82 @@ class _BookHomeViewState extends State<BookHomeView> {
       onModelReady: (model) {
         model.setContext(context);
       },
-      onPageBuilder: (BuildContext context, HomeViewModel homeViewModel) => Scaffold(
-        backgroundColor: AppColors().background,
-        appBar: _buildAppBar(),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: context.paddingLowHorizontal,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                headerRow(context),
-                SizedBox(height: context.dynamicHeight(0.05)),
-                trendingsHeaderRow(context),
-                TrendingsListview(books: books),
-                SizedBox(height: context.dynamicHeight(0.05)),
-                recommendedHeaderRow(context),
-                TrendingsListview(books: books),
-              ],
+      onPageBuilder: (BuildContext context, HomeViewModel homeViewModel) {
+        final bookViewModel = Provider.of<HomeViewModel>(context);
+        final trendingBooks = bookViewModel.trendingBooks;
+        final bestsellerBooks = bookViewModel.bestsellerBooks;
+        return Scaffold(
+          backgroundColor: AppColors.background,
+          appBar: _buildAppBar(),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: context.paddingLowHorizontal,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  headerInfoContainer(context),
+                  SizedBox(height: context.dynamicHeight(0.05)),
+                  trendingsHeaderRow(context),
+                  TrendingListview(trendingBooks: trendingBooks),
+                  SizedBox(height: context.dynamicHeight(0.05)),
+                  recommendedHeaderRow(context),
+                  BestsellerListview(bestsellerBooks: bestsellerBooks),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
+  }
+
+  Container headerInfoContainer(BuildContext context) {
+    return Container(
+        width: context.dynamicWidth(1),
+        height: context.dynamicHeight(0.2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.darkWhite,
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconTextRow(
+                    icon: Icons.bookmark,
+                    iconColor: AppColors.green,
+                    text: AppStrings.findEasy,
+                    textColor: AppColors.white,
+                  ),
+                  IconTextRow(
+                    icon: Icons.bookmark,
+                    iconColor: AppColors.green,
+                    text: AppStrings.readBook,
+                    textColor: AppColors.white,
+                  ),
+                  IconTextRow(
+                    icon: Icons.bookmark,
+                    iconColor: AppColors.green,
+                    text: AppStrings.addLibrary,
+                    textColor: AppColors.white,
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset(
+                height: 100,
+                SVGConstants.instance.bookLover,
+              ),
+            )
+          ],
+        ));
   }
 
   Row recommendedHeaderRow(BuildContext context) {
@@ -75,15 +111,15 @@ class _BookHomeViewState extends State<BookHomeView> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          AppStrings.recommended,
+          AppStrings.bestseller,
           style: context.textTheme.headlineSmall?.copyWith(
-            color: AppColors().white,
+            color: AppColors.white,
           ),
         ),
         Text(
           AppStrings.seeMore,
           style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors().white,
+            color: AppColors.white,
           ),
         ),
       ],
@@ -97,13 +133,13 @@ class _BookHomeViewState extends State<BookHomeView> {
         Text(
           AppStrings.trending,
           style: context.textTheme.headlineSmall?.copyWith(
-            color: AppColors().white,
+            color: AppColors.white,
           ),
         ),
         Text(
           AppStrings.seeMore,
           style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors().white,
+            color: AppColors.white,
           ),
         ),
       ],
@@ -117,7 +153,7 @@ class _BookHomeViewState extends State<BookHomeView> {
         Text(
           AppStrings.homeHeader,
           style: context.textTheme.headlineSmall?.copyWith(
-            color: AppColors().white,
+            color: AppColors.white,
           ),
         ),
       ],
@@ -127,59 +163,108 @@ class _BookHomeViewState extends State<BookHomeView> {
   AppBar _buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       elevation: 0,
       centerTitle: true,
       title: Text(
         AppStrings.discover,
         style: context.textTheme.headlineSmall?.copyWith(
-          color: AppColors().white,
+          color: AppColors.white,
         ),
       ),
     );
   }
 }
 
-class TrendingsListview extends StatelessWidget {
-  const TrendingsListview({
+class BestsellerListview extends StatelessWidget {
+  const BestsellerListview({
     super.key,
-    required this.books,
+    required this.bestsellerBooks,
   });
 
-  final List<Book> books;
+  final List<Book> bestsellerBooks;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.dynamicHeight(0.5),
       child: ListView.builder(
-        itemCount: books.length,
+        itemCount: bestsellerBooks.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
+          final bestsellerBook = bestsellerBooks[index];
           return BookInfoContainer(
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => BookDetailView(book: books[index]),
+                builder: (context) => BookDetailView(book: bestsellerBook),
               ),
             ),
-            img: books[index].thumbnailUrl == ""
+            img: bestsellerBook.thumbnailUrl == ""
                 ? Icon(
                     Icons.book,
                     size: 150,
-                    color: AppColors().green,
+                    color: AppColors.green,
                   )
                 : Image.network(
-                    books[index].thumbnailUrl,
+                    bestsellerBook.thumbnailUrl,
                     fit: BoxFit.fill,
                     height: 200,
                     width: 200,
                   ),
-            bgColor: AppColors().darkWhite,
-            title: books[index].title,
-            subColor: AppColors().darkGrey,
-            subText: books[index].author,
-            titleColor: AppColors().white,
+            bgColor: AppColors.darkWhite,
+            title: bestsellerBook.title,
+            subColor: AppColors.darkGrey,
+            subText: bestsellerBook.author,
+            titleColor: AppColors.white,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class TrendingListview extends StatelessWidget {
+  const TrendingListview({
+    super.key,
+    required this.trendingBooks,
+  });
+
+  final List<Book> trendingBooks;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: context.dynamicHeight(0.5),
+      child: ListView.builder(
+        itemCount: trendingBooks.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final trendBook = trendingBooks[index];
+          return BookInfoContainer(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BookDetailView(book: trendBook),
+              ),
+            ),
+            img: trendBook.thumbnailUrl == ""
+                ? Icon(
+                    Icons.book,
+                    size: 150,
+                    color: AppColors.green,
+                  )
+                : Image.network(
+                    trendBook.thumbnailUrl,
+                    fit: BoxFit.fill,
+                    height: 200,
+                    width: 200,
+                  ),
+            bgColor: AppColors.darkWhite,
+            title: trendBook.title,
+            subColor: AppColors.darkGrey,
+            subText: trendBook.author,
+            titleColor: AppColors.white,
           );
         },
       ),

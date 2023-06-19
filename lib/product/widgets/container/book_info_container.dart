@@ -42,7 +42,7 @@ class BookInfoContainer extends StatelessWidget {
             child: Column(
               children: [
                 Card(
-                  color: AppColors().background,
+                  color: AppColors.background,
                   margin: const EdgeInsets.all(10.0),
                   elevation: 0,
                   shape: RoundedRectangleBorder(

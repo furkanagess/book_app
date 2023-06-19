@@ -21,7 +21,7 @@ class FavoriteBooksView extends StatelessWidget {
         model.setContext(context);
       },
       onPageBuilder: (context, value) => Scaffold(
-        backgroundColor: AppColors().background,
+        backgroundColor: AppColors.background,
         appBar: buildAppbar(),
         body: SafeArea(
           child: ListView(
@@ -50,7 +50,7 @@ class FavoriteBooksView extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: AppColors().darkWhite,
+                          color: AppColors.darkWhite,
                         ),
                         child: Padding(
                           padding: context.paddingLow,
@@ -87,7 +87,7 @@ class FavoriteBooksView extends StatelessWidget {
 
   Card cardImage(Book book) {
     return Card(
-      color: AppColors().background,
+      color: AppColors.background,
       margin: const EdgeInsets.all(10.0),
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -99,7 +99,7 @@ class FavoriteBooksView extends StatelessWidget {
           ? Icon(
               Icons.book,
               size: 150,
-              color: AppColors().green,
+              color: AppColors.green,
             )
           : Image.network(
               book.thumbnailUrl,
@@ -118,14 +118,14 @@ class FavoriteBooksView extends StatelessWidget {
           Text(
             book.title,
             style: context.textTheme.titleSmall?.copyWith(
-              color: AppColors().white,
+              color: AppColors.white,
             ),
           ),
           SizedBox(height: context.dynamicHeight(0.02)),
           Text(
             book.author,
             style: context.textTheme.bodyLarge?.copyWith(
-              color: AppColors().darkGrey,
+              color: AppColors.darkGrey,
             ),
           ),
         ],
@@ -136,7 +136,7 @@ class FavoriteBooksView extends StatelessWidget {
   CircleAvatar deleteButton(FavoriteBooks favoriteBooks, Book book) {
     return CircleAvatar(
       radius: 460,
-      backgroundColor: AppColors().darkGrey,
+      backgroundColor: AppColors.darkGrey,
       child: IconButton(
         onPressed: () {
           favoriteBooks.removeBook(book);
@@ -144,7 +144,7 @@ class FavoriteBooksView extends StatelessWidget {
         icon: Icon(
           Icons.delete,
           size: 20,
-          color: AppColors().green,
+          color: AppColors.green,
         ),
       ),
     );
@@ -152,7 +152,8 @@ class FavoriteBooksView extends StatelessWidget {
 
   AppBar buildAppbar() {
     return AppBar(
-      backgroundColor: AppColors().background,
+      backgroundColor: AppColors.background,
+      automaticallyImplyLeading: false,
       elevation: 0,
       centerTitle: true,
       title: const Text(

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
+import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/widgets/avatar/onboad_circle.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class OnboardView extends StatelessWidget {
         model.init();
       },
       onPageBuilder: (BuildContext context, OnboardViewModel viewModel) => Scaffold(
-        backgroundColor: AppColors().background,
+        backgroundColor: AppColors.background,
         body: Padding(
           padding: context.paddingNormal,
           child: Column(
@@ -91,9 +92,9 @@ class OnboardView extends StatelessWidget {
   FloatingActionButton buildSkipButton(BuildContext context, OnboardViewModel viewModel) {
     return FloatingActionButton(
       elevation: 0,
-      backgroundColor: Colors.green,
+      backgroundColor: AppColors.green,
       child: Text(
-        "Skip",
+        AppStrings.skip,
         style: context.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
           color: Colors.white,

@@ -2,6 +2,7 @@
 
 import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view_model.dart';
+import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
@@ -30,18 +31,18 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
     onBoardPages.addAll(
       [
         OnBoardModel(
-          title: "Find Easily",
-          description: "Search and find the books that appeal to you the most among thousands of books",
+          title: AppStrings.findEasy,
+          description: AppStrings.searchandFind,
           imagePath: SVGConstants.instance.book,
         ),
         OnBoardModel(
-          title: "Add to Library",
-          description: "Add your favorite books to your library with one click to find them easier another time",
+          title: AppStrings.addLibrary,
+          description: AppStrings.addYourFavorite,
           imagePath: SVGConstants.instance.bookFavorite,
         ),
         OnBoardModel(
-          title: "Read Book",
-          description: "You can search for books and categories at any time, read more with the library",
+          title: AppStrings.readBook,
+          description: AppStrings.searchforBooks,
           imagePath: SVGConstants.instance.bookLover,
         ),
       ],

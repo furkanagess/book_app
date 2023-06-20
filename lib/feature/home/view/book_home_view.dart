@@ -7,6 +7,7 @@ import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/models/book.dart';
+import 'package:book_app/product/service/book_service.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/text/row_icon_text.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,9 @@ class _BookHomeViewState extends State<BookHomeView> {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, HomeViewModel homeViewModel) {
-        final bookViewModel = Provider.of<HomeViewModel>(context);
-        final trendingBooks = bookViewModel.trendingBooks;
-        final bestsellerBooks = bookViewModel.bestsellerBooks;
+        final bookService = Provider.of<BookService>(context);
+        final trendingBooks = bookService.trendingBooks;
+        final bestsellerBooks = bookService.bestsellerBooks;
         return Scaffold(
           backgroundColor: AppColors.background,
           appBar: _buildAppBar(),

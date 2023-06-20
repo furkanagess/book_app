@@ -106,5 +106,52 @@ A new Flutter project.
   </tr>
 </table>
 
-## Technical Stuffs ![image](https://github.com/furkanagess/book_app/assets/92018394/2989c8d8-9f1e-4ed9-8f93-20e28e8a61bf)
+## ![warning (1)](https://github.com/furkanagess/book_app/assets/92018394/6b537bd1-f5d0-432f-92c4-1dc1e9f9ad6d) ![warning (1)](https://github.com/furkanagess/book_app/assets/92018394/6b537bd1-f5d0-432f-92c4-1dc1e9f9ad6d)  Technical Stuffs  ![warning (1)](https://github.com/furkanagess/book_app/assets/92018394/6b537bd1-f5d0-432f-92c4-1dc1e9f9ad6d) ![warning (1)](https://github.com/furkanagess/book_app/assets/92018394/6b537bd1-f5d0-432f-92c4-1dc1e9f9ad6d)
 
+### Multi Provider
+<table>
+  <tr>
+    <td>Multi Provider</td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/mutli-provider.png" width=1000 height=500></td>
+  </tr>
+</table>
+### Provider- View Model
+<table>
+  <tr>
+    <td>Provider-View Model</td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/provider-mvvm.png" width=1000 height=700></td>
+  </tr>
+</table>
+### Provider-View
+<table>
+  <tr>
+    <td>Provider-View </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/provider-view.png" width=1000 height=700></td>
+  </tr>
+</table>
+
+### Book Model
+<table>
+  <tr>
+    <td>Book Model </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/book-model.png" width=1000 height=700></td>
+  </tr>
+</table>
+
+### Color Palette
+<table>
+  <tr>
+    <td>App Color Palette </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/book-colors.png" width=1000 height=700></td>
+  </tr>
+</table>

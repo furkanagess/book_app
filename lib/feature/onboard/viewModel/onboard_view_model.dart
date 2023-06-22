@@ -49,11 +49,12 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
     );
   }
 
-  void completeToOnBoard() {
+  void completeToOnBoard(BuildContext context) {
     Navigator.push(
-        context as BuildContext,
-        MaterialPageRoute(
-          builder: (context) => const MainPage(),
-        ));
+      context,
+      MaterialPageRoute(
+        builder: (context) => MainPage(),
+      ),
+    );
   }
 }

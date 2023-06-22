@@ -89,25 +89,29 @@ class OnboardView extends StatelessWidget {
     );
   }
 
-  FloatingActionButton buildSkipButton(BuildContext context, OnboardViewModel viewModel) {
-    return FloatingActionButton(
-      elevation: 0,
-      backgroundColor: AppColors.green,
-      child: Text(
-        AppStrings.skip,
-        style: context.textTheme.bodyMedium?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: AppColors.white,
-        ),
-      ),
-      onPressed: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const MainPage(),
-            ));
-      },
-    );
+  Widget buildSkipButton(BuildContext context, OnboardViewModel viewModel) {
+    return Observer(builder: (_) {
+      return viewModel.currentIndex == 2
+          ? FloatingActionButton(
+              elevation: 0,
+              backgroundColor: AppColors.green,
+              child: Text(
+                AppStrings.skip,
+                style: context.textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.white,
+                ),
+              ),
+              onPressed: () {
+                viewModel.completeToOnBoard(context);
+              },
+            )
+          : Icon(
+              Icons.double_arrow_rounded,
+              color: AppColors.green,
+              size: 50,
+            );
+    });
   }
 
   Column buildColumnBody(BuildContext context, OnBoardModel model) {

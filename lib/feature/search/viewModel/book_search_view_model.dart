@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, avoid_print
 
+import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/feature/search/service/search_book_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
@@ -27,5 +28,16 @@ abstract class _BookSearchViewModelBase with Store, BaseViewModel, ChangeNotifie
     } catch (e) {
       print('Error: $e');
     }
+  }
+
+  void navigateToDetail(BuildContext context, Book books) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookDetailView(
+          book: books,
+        ),
+      ),
+    );
   }
 }

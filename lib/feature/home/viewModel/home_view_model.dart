@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 
+import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/models/book.dart';
@@ -60,5 +61,16 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
     }
     isLoading = false;
     notifyListeners();
+  }
+
+  void navigateToDetail(BuildContext context, Book books) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BookDetailView(
+          book: books,
+        ),
+      ),
+    );
   }
 }

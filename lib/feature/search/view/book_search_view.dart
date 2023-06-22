@@ -3,7 +3,6 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
-import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/textField/stadium_textfield.dart';
 import 'package:flutter/material.dart';
@@ -66,11 +65,7 @@ class _BookSearchViewState extends State<BookSearchView> {
                       final book = bookListViewModel.books[index];
                       return BookInfoContainer(
                         onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => BookDetailView(book: book),
-                            ),
-                          );
+                          viewModel.navigateToDetail(context, book);
                         },
                         img: bookListViewModel.books[index].thumbnailUrl == ""
                             ? Icon(

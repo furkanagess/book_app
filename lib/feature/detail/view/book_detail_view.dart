@@ -1,12 +1,10 @@
 import 'package:book_app/feature/detail/viewModel/book_detail_view_model.dart';
-import 'package:book_app/feature/favorite/view/favorite_view.dart';
 import 'package:book_app/feature/favorite/viewModel/favorite_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
-
 import 'package:book_app/product/widgets/container/paragraph_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -61,11 +59,7 @@ class BookDetailView extends StatelessWidget {
             backgroundColor: AppColors.darkGrey,
             textColor: AppColors.green,
             label: AppStrings.myFavoriteBooks,
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FavoriteBooksView(),
-                )),
+            onPressed: () {},
           ),
         ));
       },

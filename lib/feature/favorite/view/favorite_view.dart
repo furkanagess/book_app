@@ -1,4 +1,3 @@
-import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/feature/favorite/viewModel/favorite_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
@@ -40,12 +39,9 @@ class FavoriteBooksView extends StatelessWidget {
                   return Padding(
                     padding: context.paddingLow,
                     child: GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BookDetailView(book: book),
-                        ),
-                      ),
+                      onTap: () {
+                        favoriteBooks.navigateToDetail(context, book);
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

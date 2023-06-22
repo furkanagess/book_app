@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
@@ -8,7 +7,6 @@ import 'package:book_app/product/widgets/avatar/onboad_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../model/onboard_model.dart';
 import '../viewModel/onboard_view_model.dart';
 

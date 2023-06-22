@@ -18,6 +18,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
 
   @override
   void init() {}
+  bool isLoading = false;
   List<Book> _trendingBooks = [];
   List<Book> _bestsellerBooks = [];
 
@@ -30,6 +31,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
   }
 
   Future<void> fetchTrendingBooks() async {
+    isLoading = true;
+    notifyListeners();
     final response = await http.get(Uri.parse(ApiUrl.trending));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -39,9 +42,13 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
     } else {
       throw Exception('Failed to fetch trending books');
     }
+    isLoading = false;
+    notifyListeners();
   }
 
   Future<void> fetchBestsellerBooks() async {
+    isLoading = true;
+    notifyListeners();
     final response = await http.get(Uri.parse(ApiUrl.bestseller));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -51,5 +58,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
     } else {
       throw Exception('Failed to fetch bestseller books');
     }
+    isLoading = false;
+    notifyListeners();
   }
 }

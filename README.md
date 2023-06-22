@@ -25,8 +25,8 @@ A new Flutter project.
     <td>Onboard Page Three</td> 
   </tr>  
   <tr>
-    <td><img src="github/screenshots/onboard-1.png" width=270 height=480></td>
-    <td><img src="github/screenshots/onboard-2.png" width=270 height=480></td>
+    <td><img src="github/screenshots/onboard-first.png" width=270 height=480></td>
+    <td><img src="github/screenshots/onboard-second.png" width=270 height=480></td>
      <td><img src="github/screenshots/onboard-3.png" width=270 height=480></td>
   </tr>
 </table>

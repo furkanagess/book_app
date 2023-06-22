@@ -29,18 +29,3 @@ abstract class _BookSearchViewModelBase with Store, BaseViewModel, ChangeNotifie
     }
   }
 }
-// class BookSearchViewModel extends ChangeNotifier {
-//   final NewBookService _newBookService = NewBookService();
-//   List<Book> _books = [];
-//   List<Book> get books => _books;
-
-//   Future<void> searchBooks(String query) async {
-//     try {
-//       final books = await _newBookService.searchBooks(query);
-//       _books = books;
-//       notifyListeners();
-//     } catch (e) {
-//       print('Error: $e');
-//     }
-//   }
-// }

@@ -97,7 +97,7 @@ class OnboardView extends StatelessWidget {
         AppStrings.skip,
         style: context.textTheme.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: AppColors.white,
         ),
       ),
       onPressed: () {
@@ -136,7 +136,7 @@ class OnboardView extends StatelessWidget {
             model.title,
             style: context.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: AppColors.white,
             ),
           ),
           SizedBox(height: context.height * 0.03),
@@ -144,7 +144,10 @@ class OnboardView extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 4,
             model.description,
-            style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400, color: Colors.white),
+            style: context.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w400,
+              color: AppColors.white,
+            ),
           ),
         ],
       ),

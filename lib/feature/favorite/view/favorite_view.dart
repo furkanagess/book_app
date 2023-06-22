@@ -1,5 +1,4 @@
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
-import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
 import 'package:book_app/feature/favorite/viewModel/favorite_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
@@ -14,7 +13,7 @@ class FavoriteBooksView extends StatelessWidget {
 //
   @override
   Widget build(BuildContext context) {
-    final favoriteBooks = Provider.of<FavoriteBooks>(context);
+    final favoriteBooks = Provider.of<FavoriteViewModel>(context);
     return BaseView<FavoriteViewModel>(
       viewModel: FavoriteViewModel(),
       onModelReady: (model) {
@@ -133,7 +132,7 @@ class FavoriteBooksView extends StatelessWidget {
     );
   }
 
-  CircleAvatar deleteButton(FavoriteBooks favoriteBooks, Book book) {
+  CircleAvatar deleteButton(FavoriteViewModel favoriteBooks, Book book) {
     return CircleAvatar(
       radius: 460,
       backgroundColor: AppColors.darkGrey,

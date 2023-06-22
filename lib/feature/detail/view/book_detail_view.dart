@@ -1,12 +1,12 @@
 import 'package:book_app/feature/detail/viewModel/book_detail_view_model.dart';
 import 'package:book_app/feature/favorite/view/favorite_view.dart';
+import 'package:book_app/feature/favorite/viewModel/favorite_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 
-import 'package:book_app/feature/favorite/provider/favorite_provider.dart';
 import 'package:book_app/product/widgets/container/paragraph_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +52,7 @@ class BookDetailView extends StatelessWidget {
       elevation: 0,
       backgroundColor: AppColors.green,
       onPressed: () {
-        final favoriteBooks = Provider.of<FavoriteBooks>(context, listen: false);
+        final favoriteBooks = Provider.of<FavoriteViewModel>(context, listen: false);
         favoriteBooks.addBook(book);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("${book.title} added to favorites"),
@@ -75,7 +75,7 @@ class BookDetailView extends StatelessWidget {
 
   AppBar buildAppbar() {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.transparent,
       elevation: 0,
       centerTitle: true,
       title: Text(

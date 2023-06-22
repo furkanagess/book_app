@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
-import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
@@ -16,7 +15,6 @@ class BookCategoriesDetailPage extends StatelessWidget {
 
   BookCategoriesDetailPage({required this.category});
 
-  // List<Book> _books = [];
   @override
   Widget build(BuildContext context) {
     final bookModel = Provider.of<CategoryViewModel>(context);
@@ -53,12 +51,7 @@ class BookCategoriesDetailPage extends StatelessWidget {
                           final book = bookModel.books[index];
                           return BookInfoContainer(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => BookDetailView(book: book),
-                                ),
-                              );
+                              viewModel.navigateToDetail(context, book);
                             },
                             img: book.thumbnailUrl == ""
                                 ? Icon(

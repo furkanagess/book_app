@@ -8,8 +8,8 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
-import 'package:book_app/product/service/book_service.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
+import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:book_app/product/widgets/text/row_icon_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,29 +31,31 @@ class _BookHomeViewState extends State<BookHomeView> {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, HomeViewModel homeViewModel) {
-        final bookService = Provider.of<BookService>(context);
+        final bookService = Provider.of<HomeViewModel>(context);
         final trendingBooks = bookService.trendingBooks;
         final bestsellerBooks = bookService.bestsellerBooks;
         return Scaffold(
           backgroundColor: AppColors.background,
           appBar: _buildAppBar(),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: context.paddingLowHorizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  headerInfoContainer(context),
-                  SizedBox(height: context.dynamicHeight(0.05)),
-                  trendingsHeaderRow(context),
-                  TrendBooks(context, trendingBooks, homeViewModel),
-                  SizedBox(height: context.dynamicHeight(0.05)),
-                  recommendedHeaderRow(context),
-                  BestsellerBooks(context, bestsellerBooks, homeViewModel),
-                ],
-              ),
-            ),
-          ),
+          body: homeViewModel.isLoading
+              ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
+              : SingleChildScrollView(
+                  child: Padding(
+                    padding: context.paddingLowHorizontal,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        headerInfoContainer(context),
+                        SizedBox(height: context.dynamicHeight(0.05)),
+                        trendingsHeaderRow(context),
+                        TrendBooks(context, trendingBooks, homeViewModel),
+                        SizedBox(height: context.dynamicHeight(0.05)),
+                        recommendedHeaderRow(context),
+                        BestsellerBooks(context, bestsellerBooks, homeViewModel),
+                      ],
+                    ),
+                  ),
+                ),
         );
       },
     );

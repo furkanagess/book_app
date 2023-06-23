@@ -114,7 +114,7 @@ This project consists of 4 main pages: the homepage, search page, my favorite bo
     <td>Multi Provider</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/mutli-provider.png" width=1000 height=500></td>
+    <td><img src="github/screenshots/multi-provider.png" width=1000 height=500></td>
   </tr>
 </table>
 ### Provider- View Model

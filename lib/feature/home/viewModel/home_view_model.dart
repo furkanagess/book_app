@@ -1,14 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:convert';
-
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
+import 'package:book_app/feature/home/service/home_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';
-import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:http/http.dart' as http;
 part 'home_view_model.g.dart';
 
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
@@ -25,7 +22,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
 
   List<Book> get trendingBooks => _trendingBooks;
   List<Book> get bestsellerBooks => _bestsellerBooks;
-
+  final HomeService homeService = HomeService();
   Future<void> fetchBooks() async {
     await fetchTrendingBooks();
     await fetchBestsellerBooks();
@@ -34,15 +31,12 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
   Future<void> fetchTrendingBooks() async {
     isLoading = true;
     notifyListeners();
-    final response = await http.get(Uri.parse(ApiUrl.trending));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final List<dynamic> booksData = data['items'];
-      _trendingBooks = booksData.map((bookData) => Book.fromJson(bookData)).toList();
-      notifyListeners();
-    } else {
-      throw Exception('Failed to fetch trending books');
+    try {
+      _trendingBooks = await homeService.fetchTrendingBooks();
+    } catch (e) {
+      return print('Failed to fetch trending books: $e');
     }
+
     isLoading = false;
     notifyListeners();
   }
@@ -50,14 +44,10 @@ abstract class _HomeViewModelBase with Store, BaseViewModel, ChangeNotifier {
   Future<void> fetchBestsellerBooks() async {
     isLoading = true;
     notifyListeners();
-    final response = await http.get(Uri.parse(ApiUrl.bestseller));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      final List<dynamic> booksData = data['items'];
-      _bestsellerBooks = booksData.map((bookData) => Book.fromJson(bookData)).toList();
-      notifyListeners();
-    } else {
-      throw Exception('Failed to fetch bestseller books');
+    try {
+      _bestsellerBooks = await homeService.fetchBestsellerBooks();
+    } catch (e) {
+      return print('Failed to fetch trending books: $e');
     }
     isLoading = false;
     notifyListeners();

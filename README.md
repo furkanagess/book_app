@@ -1,6 +1,6 @@
 # Favorite Books App
 This project consists of 4 main pages: the homepage, search page, my favorite books page, and book categories page, developed using the Google Books API. During the development process of the project, the MVVM architecture and Provider State Management method were utilized.
-A new Flutter project.
+
 
 ## The Libraries and Technologies
 - MVVM (Model-View-ViewModel) Architecture: A software architectural pattern that separates the application's data (model), user interface (view), and logic (view model) components to ensure separation of concerns and maintainability. (https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm)

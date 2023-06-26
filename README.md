@@ -117,7 +117,9 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td><img src="github/screenshots/multi-provider.png" width=1000 height=500></td>
   </tr>
 </table>
+
 ### Service
+
 <table>
   <tr>
     <td>Service</td>
@@ -157,6 +159,33 @@ This project consists of 5 main pages: the home page, detail page, search page, 
   </tr>  
   <tr>
     <td><img src="github/codeshots/book-model.png" width=1000 height=700></td>
+  </tr>
+</table>
+
+### Folder Structure
+
+<table>
+  <tr>
+    <td>Folder One </td>
+      <td> Folder Two </td>
+
+  </tr>  
+  <tr>
+    <td><img src="github/screenshots/folder-1.png" width=250 height=500></td>
+<td><img src="github/screenshots/folder-2.png" width=250 height=500></td>
+  </tr>
+</table>
+
+### Testing
+
+<table>
+  <tr>
+    <td>Folder One </td>
+   
+
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/book-home-test.png" width=1000 height=700></td>
   </tr>
 </table>
 

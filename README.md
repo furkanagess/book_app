@@ -120,13 +120,22 @@ This project consists of 5 main pages: the home page, detail page, search page, 
 ### Provider- View Model
 <table>
   <tr>
-    <td>Provider-View Model</td>
+    <td>Service</td>
+  </tr>  
+  <tr>
+    <td><img src="github/codeshots/search" width=1000 height=700></td>
+  </tr>
+</table>
+### Service-ViewModel
+<table>
+  <tr>
+    <td>Service-ViewModel</td>
   </tr>  
   <tr>
     <td><img src="github/codeshots/provider-mvvm.png" width=1000 height=700></td>
   </tr>
 </table>
-### Provider-View
+### Service-View
 <table>
   <tr>
     <td>Provider-View </td>

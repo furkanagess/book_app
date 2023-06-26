@@ -18,7 +18,7 @@ dependencies:
   flutter_mobx: ^2.0.6+5
   provider: ^6.0.5
 
-  # Web
+  # Service
   http: ^0.13.5
   
   # UI 

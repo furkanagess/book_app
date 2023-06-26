@@ -117,13 +117,13 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td><img src="github/screenshots/multi-provider.png" width=1000 height=500></td>
   </tr>
 </table>
-### Provider- View Model
+### Service
 <table>
   <tr>
     <td>Service</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/search" width=1000 height=700></td>
+    <td><img src="github/codeshots/book-search-service.png" width=1000 height=700></td>
   </tr>
 </table>
 ### Service-ViewModel
@@ -132,7 +132,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Service-ViewModel</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/provider-mvvm.png" width=1000 height=700></td>
+    <td><img src="github/codeshots/book-search-viewmodel" width=1000 height=700></td>
   </tr>
 </table>
 ### Service-View

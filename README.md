@@ -1,5 +1,5 @@
 # Favorite Books App
-This project consists of 4 main pages: the homepage, search page, my favorite books page, and book categories page, developed using the Google Books API. During the development process of the project, the MVVM architecture and Provider State Management method were utilized.
+This project consists of 5 main pages: the home page, detail page, search page, my favorite books page, and book categories page, developed using the Google Books API. During the development process of the project, the MVVM architecture and Provider State Management method were utilized.
 
 
 ## The Libraries and Technologies

@@ -132,16 +132,16 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Service-ViewModel</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-search-viewmodel" width=1000 height=700></td>
+    <td><img src="github/codeshots/book-search-viewmodel.png" width=1000 height=700></td>
   </tr>
 </table>
 ### Service-View
 <table>
   <tr>
-    <td>Provider-View </td>
+    <td>Service-View </td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/provider-view.png" width=1000 height=700></td>
+    <td><img src="github/codeshots/book-search-view.png" width=1000 height=700></td>
   </tr>
 </table>
 

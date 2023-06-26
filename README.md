@@ -126,8 +126,11 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td><img src="github/codeshots/book-search-service.png" width=1000 height=700></td>
   </tr>
 </table>
+
 ### Service-ViewModel
+
 <table>
+  
   <tr>
     <td>Service-ViewModel</td>
   </tr>  
@@ -135,7 +138,9 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td><img src="github/codeshots/book-search-viewmodel.png" width=1000 height=700></td>
   </tr>
 </table>
+
 ### Service-View
+
 <table>
   <tr>
     <td>Service-View </td>

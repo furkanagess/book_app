@@ -198,3 +198,11 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td><img src="github/codeshots/book-colors.png" width=1000 height=700></td>
   </tr>
 </table>
+
+## Will Be Added Soon
+
+- Unit Tests & Integration Tests
+- Local Storage
+- Splash
+- Shimmer Effects
+  

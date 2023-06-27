@@ -3,6 +3,7 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
+import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/textField/stadium_textfield.dart';
 import 'package:flutter/material.dart';
@@ -26,73 +27,61 @@ class _BookSearchViewState extends State<BookSearchView> {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, BookSearchViewModel viewModel) {
-        final bookListViewModel = Provider.of<BookSearchViewModel>(context);
+        final bookSearchViewModel = Provider.of<BookSearchViewModel>(context);
         return Scaffold(
           backgroundColor: AppColors.background,
           appBar: buildAppBar(),
           body: Column(
             children: [
-              Padding(
-                padding: context.paddingNormal,
-                child: StadiumCustomTextField(
-                  controller: _searchController,
-                  hintText: AppStrings.searchFBooks,
-                  defaultColor: AppColors.green,
-                  hintColor: AppColors.background,
-                  iconTap: () {
-                    final query = _searchController.text;
-                    bookListViewModel.searchBooks(query);
-                  },
-                  onSubmit: () {
-                    final query = _searchController.text;
-                    bookListViewModel.searchBooks(query);
-                  },
-                ),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: bookListViewModel.books.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 0.6,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 20,
-                    ),
-                    itemBuilder: (context, index) {
-                      final book = bookListViewModel.books[index];
-                      return BookInfoContainer(
-                        onTap: () {
-                          viewModel.navigateToDetail(context, book);
-                        },
-                        img: bookListViewModel.books[index].thumbnailUrl == ""
-                            ? Icon(
-                                Icons.book,
-                                size: 150,
-                                color: AppColors.green,
-                              )
-                            : Image.network(
-                                bookListViewModel.books[index].thumbnailUrl,
-                                fit: BoxFit.fill,
-                                height: 200,
-                                width: 200,
-                              ),
-                        bgColor: AppColors.darkWhite,
-                        title: book.title,
-                        subColor: AppColors.darkGrey,
-                        subText: book.author,
-                        titleColor: AppColors.white,
-                      );
-                    },
-                  ),
-                ),
-              ),
+              SearchBar(searchController: _searchController, bookSearchViewModel: bookSearchViewModel),
+              SearchedBookList(bookSearchViewModel),
             ],
           ),
         );
       },
+    );
+  }
+
+  Expanded SearchedBookList(BookSearchViewModel bookSearchViewModel) {
+    return Expanded(
+      child: SingleChildScrollView(
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: bookSearchViewModel.books.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 0.6,
+            crossAxisCount: 2,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 20,
+          ),
+          itemBuilder: (context, index) {
+            final book = bookSearchViewModel.books[index];
+            return BookInfoContainer(
+              onTap: () {
+                AppRoutes().navigateToDetail(context, book);
+              },
+              img: bookSearchViewModel.books[index].thumbnailUrl == ""
+                  ? Icon(
+                      Icons.book,
+                      size: 150,
+                      color: AppColors.green,
+                    )
+                  : Image.network(
+                      bookSearchViewModel.books[index].thumbnailUrl,
+                      fit: BoxFit.fill,
+                      height: 200,
+                      width: 200,
+                    ),
+              bgColor: AppColors.darkWhite,
+              title: book.title,
+              subColor: AppColors.darkGrey,
+              subText: book.author,
+              titleColor: AppColors.white,
+            );
+          },
+        ),
+      ),
     );
   }
 
@@ -105,6 +94,38 @@ class _BookSearchViewState extends State<BookSearchView> {
         AppStrings.search,
       ),
       centerTitle: true,
+    );
+  }
+}
+
+class SearchBar extends StatelessWidget {
+  const SearchBar({
+    super.key,
+    required TextEditingController searchController,
+    required this.bookSearchViewModel,
+  }) : _searchController = searchController;
+
+  final TextEditingController _searchController;
+  final BookSearchViewModel bookSearchViewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: context.paddingNormal,
+      child: StadiumCustomTextField(
+        controller: _searchController,
+        hintText: AppStrings.searchFBooks,
+        defaultColor: AppColors.green,
+        hintColor: AppColors.background,
+        iconTap: () {
+          final query = _searchController.text;
+          bookSearchViewModel.searchBooks(query);
+        },
+        onSubmit: () {
+          final query = _searchController.text;
+          bookSearchViewModel.searchBooks(query);
+        },
+      ),
     );
   }
 }

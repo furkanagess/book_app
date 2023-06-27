@@ -8,6 +8,7 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
+import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:book_app/product/widgets/text/row_icon_text.dart';
@@ -30,10 +31,10 @@ class _BookHomeViewState extends State<BookHomeView> {
       onModelReady: (model) {
         model.setContext(context);
       },
-      onPageBuilder: (BuildContext context, HomeViewModel homeViewModel) {
-        final bookService = Provider.of<HomeViewModel>(context);
-        final trendingBooks = bookService.trendingBooks;
-        final bestsellerBooks = bookService.bestsellerBooks;
+      onPageBuilder: (BuildContext context, HomeViewModel viewModel) {
+        final homeViewModel = Provider.of<HomeViewModel>(context);
+        final trendingBooks = homeViewModel.trendingBooks;
+        final bestsellerBooks = homeViewModel.bestsellerBooks;
         return Scaffold(
           backgroundColor: AppColors.background,
           appBar: _buildAppBar(),
@@ -71,7 +72,7 @@ class _BookHomeViewState extends State<BookHomeView> {
           final trendBook = trendingBooks[index];
           return BookInfoContainer(
             onTap: () {
-              homeViewModel.navigateToDetail(context, trendBook);
+              AppRoutes().navigateToDetail(context, trendBook);
             },
             img: trendBook.thumbnailUrl == ""
                 ? Icon(
@@ -106,7 +107,7 @@ class _BookHomeViewState extends State<BookHomeView> {
           final bestsellerBook = bestsellerBooks[index];
           return BookInfoContainer(
             onTap: () {
-              homeViewModel.navigateToDetail(context, bestsellerBook);
+              AppRoutes().navigateToDetail(context, bestsellerBook);
             },
             img: bestsellerBook.thumbnailUrl == ""
                 ? Icon(

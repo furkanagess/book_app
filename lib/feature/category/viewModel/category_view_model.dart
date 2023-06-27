@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print, library_private_types_in_public_api
 
 import 'package:book_app/feature/category/service/category_service.dart';
-import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/models/category.dart';
@@ -20,13 +19,13 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
   List<Book> books = [];
   List<BookCategory> categories = [];
   bool isLoading = false;
-  final CategoryService categoryService = CategoryService();
+  final CategoryService _categoryService = CategoryService();
 
   Future<void> fetchBookCategories() async {
     isLoading = true;
     notifyListeners();
     try {
-      categories = await categoryService.fetchBookCategories();
+      categories = await _categoryService.fetchBookCategories();
     } catch (e) {
       return print('Failed to fetch trending books: $e');
     }
@@ -40,23 +39,12 @@ abstract class _CategoryViewModelBase with Store, BaseViewModel, ChangeNotifier 
     notifyListeners();
 
     try {
-      books = await categoryService.fetchBooksByCategory(category);
+      books = await _categoryService.fetchBooksByCategory(category);
     } catch (e) {
       return print('Failed to fetch trending books: $e');
     }
 
     isLoading = false;
     notifyListeners();
-  }
-
-  void navigateToDetail(BuildContext context, Book books) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BookDetailView(
-          book: books,
-        ),
-      ),
-    );
   }
 }

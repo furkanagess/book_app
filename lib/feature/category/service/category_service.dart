@@ -8,8 +8,8 @@ import 'package:book_app/product/models/category.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryService {
-  List<Book> books = [];
-  List<BookCategory> categories = [];
+  List<Book> _books = [];
+  List<BookCategory> _categories = [];
 
   Future<List<BookCategory>> fetchBookCategories() async {
     try {
@@ -22,7 +22,7 @@ class CategoryService {
 
         final List<dynamic> items = (data['items'] as List<dynamic>).cast<dynamic>();
 
-        categories = items
+        _categories = items
             .map((item) => BookCategory(
                   name: item['volumeInfo']['categories'] != null ? item['volumeInfo']['categories'][0] : 'Unknown Category',
                 ))
@@ -34,7 +34,7 @@ class CategoryService {
     } catch (e) {
       print('Error: $e');
     }
-    return categories;
+    return _categories;
   }
 
   Future<List<Book>> fetchBooksByCategory(String category) async {
@@ -48,7 +48,7 @@ class CategoryService {
 
         final List<dynamic> items = (data['items'] as List<dynamic>).cast<dynamic>();
 
-        books = items
+        _books = items
             .map((item) => Book(
                   title: item['volumeInfo']['title'] ?? 'Unknown Title',
                   thumbnailUrl: item['volumeInfo']['imageLinks'] != null ? item['volumeInfo']['imageLinks']['thumbnail'] ?? '' : '',
@@ -62,6 +62,6 @@ class CategoryService {
     } catch (e) {
       print('Error: $e');
     }
-    return books;
+    return _books;
   }
 }

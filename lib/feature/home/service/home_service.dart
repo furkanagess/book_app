@@ -17,7 +17,6 @@ class HomeService {
       final data = jsonDecode(response.body);
       final List<dynamic> booksData = data['items'];
       _trendingBooks = booksData.map((bookData) => Book.fromJson(bookData)).toList();
-      // notifyListeners();
     } else {
       throw Exception('Failed to fetch trending books');
     }
@@ -30,7 +29,6 @@ class HomeService {
       final data = jsonDecode(response.body);
       final List<dynamic> booksData = data['items'];
       _bestsellerBooks = booksData.map((bookData) => Book.fromJson(bookData)).toList();
-      // notifyListeners();
     } else {
       throw Exception('Failed to fetch bestseller books');
     }

@@ -4,6 +4,7 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
+import 'package:book_app/product/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +13,7 @@ class FavoriteBooksView extends StatelessWidget {
 //
   @override
   Widget build(BuildContext context) {
-    final favoriteBooks = Provider.of<FavoriteViewModel>(context);
+    final favoriteViewModel = Provider.of<FavoriteViewModel>(context);
     return BaseView<FavoriteViewModel>(
       viewModel: FavoriteViewModel(),
       onModelReady: (model) {
@@ -24,56 +25,64 @@ class FavoriteBooksView extends StatelessWidget {
         body: SafeArea(
           child: ListView(
             children: [
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: favoriteBooks.books.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.6,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 1,
-                  mainAxisSpacing: 20,
-                ),
-                itemBuilder: (context, index) {
-                  final book = favoriteBooks.books[index];
-                  return Padding(
-                    padding: context.paddingLow,
-                    child: GestureDetector(
-                      onTap: () {
-                        favoriteBooks.navigateToDetail(context, book);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: AppColors.darkWhite,
-                        ),
-                        child: Padding(
-                          padding: context.paddingLow,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 11,
-                                child: cardImage(book),
-                              ),
-                              SizedBox(height: context.dynamicHeight(0.01)),
-                              Expanded(
-                                flex: 3,
-                                child: scrollableText(book, context),
-                              ),
-                              SizedBox(height: context.dynamicHeight(0.01)),
-                              Expanded(
-                                flex: 2,
-                                child: deleteButton(favoriteBooks, book),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              buildFavoriteBookGrid(favoriteViewModel),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  GridView buildFavoriteBookGrid(FavoriteViewModel favoriteViewModel) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: favoriteViewModel.books.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: 0.6,
+        crossAxisCount: 2,
+        crossAxisSpacing: 1,
+        mainAxisSpacing: 20,
+      ),
+      itemBuilder: (context, index) {
+        final book = favoriteViewModel.books[index];
+        return buildFavoriteBook(context, favoriteViewModel, book);
+      },
+    );
+  }
+
+  Padding buildFavoriteBook(BuildContext context, FavoriteViewModel favoriteViewModel, Book book) {
+    return Padding(
+      padding: context.paddingLow,
+      child: GestureDetector(
+        onTap: () {
+          AppRoutes().navigateToDetail(context, book);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.darkWhite,
+          ),
+          child: Padding(
+            padding: context.paddingLow,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 11,
+                  child: cardImage(book),
+                ),
+                SizedBox(height: context.dynamicHeight(0.01)),
+                Expanded(
+                  flex: 3,
+                  child: scrollableText(book, context),
+                ),
+                SizedBox(height: context.dynamicHeight(0.01)),
+                Expanded(
+                  flex: 2,
+                  child: deleteButton(favoriteViewModel, book),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -128,13 +137,13 @@ class FavoriteBooksView extends StatelessWidget {
     );
   }
 
-  CircleAvatar deleteButton(FavoriteViewModel favoriteBooks, Book book) {
+  CircleAvatar deleteButton(FavoriteViewModel favoriteViewModel, Book book) {
     return CircleAvatar(
       radius: 460,
       backgroundColor: AppColors.darkGrey,
       child: IconButton(
         onPressed: () {
-          favoriteBooks.removeBook(book);
+          favoriteViewModel.removeBook(book);
         },
         icon: Icon(
           Icons.delete,

@@ -4,6 +4,7 @@ import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
+import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
@@ -83,8 +84,8 @@ class CategoryBookGrid extends StatelessWidget {
               : Image.network(
                   book.thumbnailUrl,
                   fit: BoxFit.fill,
-                  height: 200,
-                  width: 200,
+                  width: context.dynamicWidth(0.4),
+                  height: context.dynamicHeight(0.22),
                 ),
           bgColor: AppColors.darkWhite,
           title: book.title,

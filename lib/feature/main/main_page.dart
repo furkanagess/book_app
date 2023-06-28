@@ -40,6 +40,7 @@ class _MainPageState extends State<MainPage> {
           size: 30,
         ),
         currentIndex: currentPage,
+        elevation: 5,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
           setState(() {

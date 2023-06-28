@@ -70,8 +70,8 @@ class _BookSearchViewState extends State<BookSearchView> {
                   : Image.network(
                       bookSearchViewModel.books[index].thumbnailUrl,
                       fit: BoxFit.fill,
-                      height: 200,
-                      width: 200,
+                      width: context.dynamicWidth(0.4),
+                      height: context.dynamicHeight(0.22),
                     ),
               bgColor: AppColors.darkWhite,
               title: book.title,

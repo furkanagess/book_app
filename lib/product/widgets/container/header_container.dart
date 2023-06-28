@@ -22,7 +22,7 @@ class HeaderContainer extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: context.dynamicWidth(0.42),
-        height: context.dynamicHeight(0.25),
+        height: context.dynamicHeight(0.20),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(10),

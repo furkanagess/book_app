@@ -69,7 +69,7 @@ class FavoriteBooksView extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 11,
-                  child: cardImage(book),
+                  child: cardImage(book, context),
                 ),
                 SizedBox(height: context.dynamicHeight(0.01)),
                 Expanded(
@@ -89,7 +89,7 @@ class FavoriteBooksView extends StatelessWidget {
     );
   }
 
-  Card cardImage(Book book) {
+  Card cardImage(Book book, BuildContext context) {
     return Card(
       color: AppColors.background,
       margin: const EdgeInsets.all(10.0),
@@ -108,8 +108,8 @@ class FavoriteBooksView extends StatelessWidget {
           : Image.network(
               book.thumbnailUrl,
               fit: BoxFit.fill,
-              height: 200,
-              width: 200,
+              width: context.dynamicWidth(0.4),
+              height: context.dynamicHeight(0.22),
             ),
     );
   }

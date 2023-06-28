@@ -64,7 +64,7 @@ class _BookHomeViewState extends State<BookHomeView> {
 
   SizedBox TrendBooks(BuildContext context, List<Book> trendingBooks, HomeViewModel homeViewModel) {
     return SizedBox(
-      height: context.dynamicHeight(0.5),
+      height: context.dynamicHeight(0.45),
       child: ListView.builder(
         itemCount: trendingBooks.length,
         scrollDirection: Axis.horizontal,
@@ -83,8 +83,8 @@ class _BookHomeViewState extends State<BookHomeView> {
                 : Image.network(
                     trendBook.thumbnailUrl,
                     fit: BoxFit.fill,
-                    height: 200,
-                    width: 200,
+                    width: context.dynamicWidth(0.4),
+                    height: context.dynamicHeight(0.22),
                   ),
             bgColor: AppColors.darkWhite,
             title: trendBook.title,
@@ -99,7 +99,7 @@ class _BookHomeViewState extends State<BookHomeView> {
 
   SizedBox BestsellerBooks(BuildContext context, List<Book> bestsellerBooks, HomeViewModel homeViewModel) {
     return SizedBox(
-      height: context.dynamicHeight(0.5),
+      height: context.dynamicHeight(0.45),
       child: ListView.builder(
         itemCount: bestsellerBooks.length,
         scrollDirection: Axis.horizontal,
@@ -118,8 +118,8 @@ class _BookHomeViewState extends State<BookHomeView> {
                 : Image.network(
                     bestsellerBook.thumbnailUrl,
                     fit: BoxFit.fill,
-                    height: 200,
-                    width: 200,
+                    width: context.dynamicWidth(0.4),
+                    height: context.dynamicHeight(0.22),
                   ),
             bgColor: AppColors.darkWhite,
             title: bestsellerBook.title,

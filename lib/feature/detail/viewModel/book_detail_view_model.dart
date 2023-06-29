@@ -13,4 +13,6 @@ abstract class _BookDetailViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {}
+
+  void favoriteSnackbar() {}
 }

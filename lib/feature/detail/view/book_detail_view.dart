@@ -52,16 +52,12 @@ class BookDetailView extends StatelessWidget {
       onPressed: () {
         final favoriteViewModel = Provider.of<FavoriteViewModel>(context, listen: false);
         favoriteViewModel.addBook(book);
+
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("${book.title} added to favorites"),
-            duration: const Duration(seconds: 2),
-            action: SnackBarAction(
-              backgroundColor: AppColors.darkGrey,
-              textColor: AppColors.green,
-              label: AppStrings.myFavoriteBooks,
-              onPressed: () {},
-            ),
+          const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            content: Text(AppStrings.addFavorite),
+            duration: Duration(seconds: 2),
           ),
         );
       },

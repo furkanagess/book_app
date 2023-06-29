@@ -6,16 +6,16 @@ class StadiumCustomTextField extends StatelessWidget {
   TextEditingController controller;
   Color defaultColor;
   Color hintColor;
-  VoidCallback iconTap;
-  VoidCallback onSubmit;
+  VoidCallback? iconTap;
+  VoidCallback? onSubmit;
   String hintText;
   StadiumCustomTextField({
     super.key,
     required this.hintText,
     required this.controller,
     required this.defaultColor,
-    required this.iconTap,
-    required this.onSubmit,
+    this.iconTap,
+    this.onSubmit,
     required this.hintColor,
   });
 

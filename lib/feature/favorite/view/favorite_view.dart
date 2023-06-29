@@ -79,7 +79,7 @@ class FavoriteBooksView extends StatelessWidget {
                 SizedBox(height: context.dynamicHeight(0.01)),
                 Expanded(
                   flex: 2,
-                  child: deleteButton(favoriteViewModel, book),
+                  child: deleteButton(favoriteViewModel, book, context),
                 ),
               ],
             ),
@@ -137,13 +137,54 @@ class FavoriteBooksView extends StatelessWidget {
     );
   }
 
-  CircleAvatar deleteButton(FavoriteViewModel favoriteViewModel, Book book) {
+  CircleAvatar deleteButton(FavoriteViewModel favoriteViewModel, Book book, BuildContext context) {
     return CircleAvatar(
       radius: 460,
       backgroundColor: AppColors.darkGrey,
       child: IconButton(
         onPressed: () {
-          favoriteViewModel.removeBook(book);
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                backgroundColor: AppColors.white,
+                title: Text(
+                  AppStrings.sureDelete,
+                  style: context.textTheme.titleLarge?.copyWith(
+                    color: AppColors.background,
+                  ),
+                ),
+                actions: [
+                  Card(
+                    color: AppColors.green,
+                    child: TextButton(
+                      onPressed: () {
+                        favoriteViewModel.removeBook(book);
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        AppStrings.delete,
+                        style: context.textTheme.titleMedium?.copyWith(
+                          color: AppColors.background,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      AppStrings.back,
+                      style: context.textTheme.bodyMedium?.copyWith(color: AppColors.background),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+          //
         },
         icon: Icon(
           Icons.delete,

@@ -43,4 +43,10 @@ class AppStrings {
   static const String searchandFind = "Search and find the books that appeal to you the most among thousands of books";
   static const String addYourFavorite = "Add your favorite books to your library with one click to find them easier another time";
   static const String searchforBooks = "You can search for books and categories at any time, read more with the library";
+
+  // Dialogs
+  static const String addFavorite = "Added to favorites";
+  static const String sureDelete = "Are you sure to delete?";
+  static const String delete = "Delete";
+  static const String back = "Back";
 }

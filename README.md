@@ -67,11 +67,11 @@ This project consists of 5 main pages: the home page, detail page, search page, 
 <table>
   <tr>
     <td>Favorites Page </td>
-
+<td>Delete Dialog </td>
   </tr>  
   <tr>
     <td><img src="github/screenshots/book-favorite-page.png" width=270 height=480></td>
-
+<td><img src="github/screenshots/favorite-delete.jpeg" width=270 height=480></td>
   </tr>
 </table>
 
@@ -86,7 +86,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
   </tr>  
   <tr>
     <td><img src="github/screenshots/book-detail-page.png" width=270 height=480></td>
-<td><img src="github/screenshots/book-bottom-shhet.png" width=270 height=480></td>
+<td><img src="github/screenshots/snackbar.jpeg" width=270 height=480></td>
   </tr>
 </table>
 
@@ -114,7 +114,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Multi Provider</td>
   </tr>  
   <tr>
-    <td><img src="github/screenshots/multi-provider.png" width=1000 height=500></td>
+    <td><img src="github/codesnap/provider.png" width=1000 height=500></td>
   </tr>
 </table>
 
@@ -125,7 +125,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Service</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-search-service.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/category-service.png" width=1000 height=700></td>
   </tr>
 </table>
 
@@ -137,7 +137,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Service-ViewModel</td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-search-viewmodel.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/category-viewmodel.png"width=1000 height=700></td>
   </tr>
 </table>
 
@@ -148,7 +148,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Service-View </td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-search-view.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/category-view.png" width=1000 height=700></td>
   </tr>
 </table>
 
@@ -158,7 +158,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>Book Model </td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-model.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/book-model.png" width=1000 height=700></td>
   </tr>
 </table>
 
@@ -185,7 +185,7 @@ This project consists of 5 main pages: the home page, detail page, search page, 
 
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-home-test.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/test.png" width=1000 height=700></td>
   </tr>
 </table>
 
@@ -195,7 +195,37 @@ This project consists of 5 main pages: the home page, detail page, search page, 
     <td>App Color Palette </td>
   </tr>  
   <tr>
-    <td><img src="github/codeshots/book-colors.png" width=1000 height=700></td>
+    <td><img src="github/codesnap/colors.png"width=1000 height=700></td>
+  </tr>
+</table>
+
+### App Routes
+<table>
+  <tr>
+    <td>App Color Palette </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codesnap/routes.png"width=1000 height=700></td>
+  </tr>
+</table>
+
+### App Strings
+<table>
+  <tr>
+    <td>App Color Palette </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codesnap/strings.png"width=1000 height=700></td>
+  </tr>
+</table>
+
+### SVG
+<table>
+  <tr>
+    <td>App Color Palette </td>
+  </tr>  
+  <tr>
+    <td><img src="github/codesnap/svg.png"width=1000 height=700></td>
   </tr>
 </table>
 

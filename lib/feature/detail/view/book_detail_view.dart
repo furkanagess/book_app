@@ -55,6 +55,7 @@ class BookDetailView extends StatelessWidget {
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
+            shape: StadiumBorder(),
             behavior: SnackBarBehavior.floating,
             content: Text(AppStrings.addFavorite),
             duration: Duration(seconds: 2),

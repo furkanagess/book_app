@@ -7,6 +7,7 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/category.dart';
 import 'package:book_app/product/routes/app_routes.dart';
+import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:flutter/material.dart';
@@ -27,12 +28,8 @@ class BookCategoriesDetailPage extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
         return Scaffold(
-          backgroundColor: AppColors.background,
-          appBar: AppBar(
+          appBar: CustomAppBar(
             title: Text(category.name),
-            backgroundColor: AppColors.transparent,
-            elevation: 0,
-            centerTitle: true,
           ),
           body: bookModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)

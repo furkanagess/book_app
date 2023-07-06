@@ -15,6 +15,13 @@ This project consists of 5 main pages: the home page, detail page, search page, 
 - http => https://pub.dev/packages/http
 
 ## Application Pages
+
+
+https://github.com/furkanagess/book_app/assets/92018394/57d4b2a7-08e8-46c6-a732-9a4d76cab6d5
+
+
+
+
 ### Onboard
 - The application includes three introductory screens that provide brief descriptions and visuals about the app.
 

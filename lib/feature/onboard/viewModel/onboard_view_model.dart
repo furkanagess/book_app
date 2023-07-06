@@ -53,7 +53,7 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => MainPage(),
+        builder: (context) => const MainPage(),
       ),
     );
   }

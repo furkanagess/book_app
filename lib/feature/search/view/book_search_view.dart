@@ -6,7 +6,6 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/routes/app_routes.dart';
-import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/textField/stadium_textfield.dart';
 import 'package:flutter/material.dart';
@@ -32,12 +31,8 @@ class _BookSearchViewState extends State<BookSearchView> {
       onPageBuilder: (BuildContext context, BookSearchViewModel viewModel) {
         final bookSearchViewModel = Provider.of<BookSearchViewModel>(context);
         return Scaffold(
-          appBar: const CustomAppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              AppStrings.search,
-            ),
-          ),
+          backgroundColor: AppColors.background,
+          appBar: buildAppBar(),
           body: Column(
             children: [
               SearchBar(searchController: _searchController, bookSearchViewModel: bookSearchViewModel),
@@ -89,6 +84,18 @@ class _BookSearchViewState extends State<BookSearchView> {
           },
         ),
       ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      title: const Text(
+        AppStrings.search,
+      ),
+      centerTitle: true,
     );
   }
 }

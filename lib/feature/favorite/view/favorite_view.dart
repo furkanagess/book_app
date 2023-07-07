@@ -5,7 +5,6 @@ import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/routes/app_routes.dart';
-import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,12 +20,8 @@ class FavoriteBooksView extends StatelessWidget {
         model.setContext(context);
       },
       onPageBuilder: (context, value) => Scaffold(
-        appBar: const CustomAppBar(
-          automaticallyImplyLeading: false,
-          title: Text(
-            AppStrings.myFavoriteBooks,
-          ),
-        ),
+        backgroundColor: AppColors.background,
+        appBar: buildAppbar(),
         body: SafeArea(
           child: ListView(
             children: [
@@ -196,6 +191,18 @@ class FavoriteBooksView extends StatelessWidget {
           size: 20,
           color: AppColors.green,
         ),
+      ),
+    );
+  }
+
+  AppBar buildAppbar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      centerTitle: true,
+      title: const Text(
+        AppStrings.myFavoriteBooks,
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/routes/app_routes.dart';
-import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/header_container.dart';
 import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +22,8 @@ class BookCategoryView extends StatelessWidget {
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
         final categoryViewModel = Provider.of<CategoryViewModel>(context);
         return Scaffold(
-          appBar: const CustomAppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              AppStrings.categories,
-            ),
-          ),
+          backgroundColor: AppColors.background,
+          appBar: buildAppbar(context),
           body: categoryViewModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
               : SafeArea(
@@ -41,6 +36,21 @@ class BookCategoryView extends StatelessWidget {
                 ),
         );
       },
+    );
+  }
+
+  AppBar buildAppbar(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors.transparent,
+      elevation: 0,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      title: Text(
+        AppStrings.categories,
+        style: context.textTheme.headlineSmall?.copyWith(
+          color: AppColors.white,
+        ),
+      ),
     );
   }
 }

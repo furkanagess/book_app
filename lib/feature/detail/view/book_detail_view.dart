@@ -5,7 +5,6 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
-import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/paragraph_container.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,11 +23,8 @@ class BookDetailView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, BookDetailViewModel viewModel) => Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        appBar: CustomAppBar(
-          title: Text(
-            book.title,
-          ),
-        ),
+        backgroundColor: AppColors.background,
+        appBar: buildAppbar(),
         body: Padding(
           padding: context.paddingLowHorizontal,
           child: Column(
@@ -69,6 +65,17 @@ class BookDetailView extends StatelessWidget {
       child: Icon(
         Icons.favorite,
         color: AppColors.darkWhite,
+      ),
+    );
+  }
+
+  AppBar buildAppbar() {
+    return AppBar(
+      backgroundColor: AppColors.transparent,
+      elevation: 0,
+      centerTitle: true,
+      title: Text(
+        book.title,
       ),
     );
   }

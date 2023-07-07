@@ -9,7 +9,6 @@ import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/routes/app_routes.dart';
-import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:book_app/product/widgets/text/row_icon_text.dart';
@@ -37,12 +36,8 @@ class _BookHomeViewState extends State<BookHomeView> {
         final trendingBooks = homeViewModel.trendingBooks;
         final bestsellerBooks = homeViewModel.bestsellerBooks;
         return Scaffold(
-          appBar: const CustomAppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              AppStrings.discover,
-            ),
-          ),
+          backgroundColor: AppColors.background,
+          appBar: _buildAppBar(),
           body: homeViewModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
               : SingleChildScrollView(
@@ -237,6 +232,21 @@ class _BookHomeViewState extends State<BookHomeView> {
           ),
         ),
       ],
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: AppColors.transparent,
+      elevation: 0,
+      centerTitle: true,
+      title: Text(
+        AppStrings.discover,
+        style: context.textTheme.headlineSmall?.copyWith(
+          color: AppColors.white,
+        ),
+      ),
     );
   }
 }

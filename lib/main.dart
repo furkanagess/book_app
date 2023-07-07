@@ -1,6 +1,8 @@
 import 'package:book_app/feature/onboard/view/onboard_view.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/provider/app_provider.dart';
+import 'package:book_app/product/theme/app_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,10 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
-      home: OnboardView(),
+      theme: AppTheme().theme,
+      home: const OnboardView(),
     );
   }
 }

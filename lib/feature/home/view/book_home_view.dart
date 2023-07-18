@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:book_app/feature/home/viewModel/home_view_model.dart';
 
 import 'package:book_app/product/base/base_view.dart';
@@ -48,10 +46,10 @@ class _BookHomeViewState extends State<BookHomeView> {
                       children: [
                         headerInfoContainer(context),
                         SizedBox(height: context.dynamicHeight(0.05)),
-                        trendingsHeaderRow(context),
+                        pageHeaders(context, AppStrings.trending, AppStrings.seeMore),
                         trendBooksListview(context, viewModel),
                         SizedBox(height: context.dynamicHeight(0.05)),
-                        recommendedHeaderRow(context),
+                        pageHeaders(context, AppStrings.bestseller, AppStrings.seeMore),
                         bestsellerBooksListview(context, viewModel),
                       ],
                     ),
@@ -74,7 +72,7 @@ class _BookHomeViewState extends State<BookHomeView> {
             onTap: () {
               AppRoutes().navigateToDetail(context, bestsellerBook);
             },
-            img: bestsellerBook.thumbnailUrl == ""
+            img: bestsellerBook.thumbnailUrl.isEmpty
                 ? Icon(
                     Icons.book,
                     size: 150,
@@ -109,7 +107,7 @@ class _BookHomeViewState extends State<BookHomeView> {
             onTap: () {
               AppRoutes().navigateToDetail(context, trendBook);
             },
-            img: trendBook.thumbnailUrl == ""
+            img: trendBook.thumbnailUrl.isEmpty
                 ? Icon(
                     Icons.book,
                     size: 150,
@@ -173,7 +171,7 @@ class _BookHomeViewState extends State<BookHomeView> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SvgPicture.asset(
-                height: 100,
+                height: context.dynamicHeight(0.1),
                 SVGConstants.instance.bookLover,
               ),
             )
@@ -181,53 +179,19 @@ class _BookHomeViewState extends State<BookHomeView> {
         ));
   }
 
-  Row recommendedHeaderRow(BuildContext context) {
+  Row pageHeaders(BuildContext context, String header, String? actions) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          AppStrings.bestseller,
+          header,
           style: context.textTheme.headlineSmall?.copyWith(
             color: AppColors.white,
           ),
         ),
         Text(
-          AppStrings.seeMore,
+          actions!,
           style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors.white,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row trendingsHeaderRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          AppStrings.trending,
-          style: context.textTheme.headlineSmall?.copyWith(
-            color: AppColors.white,
-          ),
-        ),
-        Text(
-          AppStrings.seeMore,
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: AppColors.white,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Row headerRow(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          AppStrings.homeHeader,
-          style: context.textTheme.headlineSmall?.copyWith(
             color: AppColors.white,
           ),
         ),

@@ -125,50 +125,6 @@ https://github.com/furkanagess/book_app/assets/92018394/57d4b2a7-08e8-46c6-a732-
   </tr>
 </table>
 
-### Service
-
-<table>
-  <tr>
-    <td>Service</td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/category-service.png" width=1000 height=700></td>
-  </tr>
-</table>
-
-### Service-ViewModel
-
-<table>
-  
-  <tr>
-    <td>Service-ViewModel</td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/category-viewmodel.png"width=1000 height=700></td>
-  </tr>
-</table>
-
-### Service-View
-
-<table>
-  <tr>
-    <td>Service-View </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/category-view.png" width=1000 height=700></td>
-  </tr>
-</table>
-
-### Book Model
-<table>
-  <tr>
-    <td>Book Model </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/book-model.png" width=1000 height=700></td>
-  </tr>
-</table>
-
 ### Folder Structure
 
 <table>
@@ -183,58 +139,6 @@ https://github.com/furkanagess/book_app/assets/92018394/57d4b2a7-08e8-46c6-a732-
   </tr>
 </table>
 
-### Testing
-
-<table>
-  <tr>
-    <td>Folder One </td>
-   
-
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/test.png" width=1000 height=700></td>
-  </tr>
-</table>
-
-### Color Palette
-<table>
-  <tr>
-    <td>App Color Palette </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/colors.png"width=1000 height=700></td>
-  </tr>
-</table>
-
-### App Routes
-<table>
-  <tr>
-    <td>App Color Palette </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/routes.png"width=1000 height=700></td>
-  </tr>
-</table>
-
-### App Strings
-<table>
-  <tr>
-    <td>App Color Palette </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/strings.png"width=1000 height=700></td>
-  </tr>
-</table>
-
-### SVG
-<table>
-  <tr>
-    <td>App Color Palette </td>
-  </tr>  
-  <tr>
-    <td><img src="github/codesnap/svg.png"width=1000 height=700></td>
-  </tr>
-</table>
 
 ## Will Be Added Soon
 

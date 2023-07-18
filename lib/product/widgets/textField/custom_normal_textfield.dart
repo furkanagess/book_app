@@ -1,17 +1,16 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
+@immutable
 class CustomNormalTextfield extends StatelessWidget {
-  TextEditingController controller;
-  Color focusColor;
-  Color defaultColor;
-  Color hintColor;
-  VoidCallback iconTap;
-  VoidCallback onSubmit;
-  String hintText;
+  final TextEditingController controller;
+  final Color focusColor;
+  final Color defaultColor;
+  final Color hintColor;
+  final VoidCallback iconTap;
+  final VoidCallback onSubmit;
+  final String hintText;
 
-  CustomNormalTextfield({
+  const CustomNormalTextfield({
     super.key,
     required this.hintText,
     required this.controller,

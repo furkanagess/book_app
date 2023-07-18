@@ -1,8 +1,7 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class HeaderContainer extends StatelessWidget {
   final Function() onTap;
   final Color bgColor;

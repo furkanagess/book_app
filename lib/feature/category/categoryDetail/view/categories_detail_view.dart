@@ -9,7 +9,7 @@ import 'package:book_app/product/models/book_category.dart';
 import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
-import 'package:book_app/product/widgets/progress_indicator.dart';
+import 'package:book_app/product/widgets/indicator/progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

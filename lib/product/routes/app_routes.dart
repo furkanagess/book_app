@@ -6,11 +6,11 @@ import 'package:book_app/product/models/book_category.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
-  void navigateToCategory(BuildContext context, BookCategory category) {
+  void navigateToCategory(BuildContext context, BookCategory bookCategory) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BookCategoriesDetailPage(category: category),
+        builder: (context) => BookCategoriesDetailPage(category: bookCategory),
       ),
     );
   }

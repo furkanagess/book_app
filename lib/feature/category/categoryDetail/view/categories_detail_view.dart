@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_null_comparison, library_private_types_in_public_api, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
-
 import 'package:book_app/feature/category/viewModel/category_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
@@ -11,16 +9,14 @@ import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
 import 'package:book_app/product/widgets/indicator/progress_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BookCategoriesDetailPage extends StatelessWidget {
   final BookCategory category;
 
-  BookCategoriesDetailPage({required this.category});
+  const BookCategoriesDetailPage({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
-    final bookModel = Provider.of<CategoryViewModel>(context);
     return BaseView<CategoryViewModel>(
       viewModel: CategoryViewModel(),
       onModelReady: (model) {
@@ -31,12 +27,12 @@ class BookCategoriesDetailPage extends StatelessWidget {
           appBar: CustomAppBar(
             title: Text(category.name),
           ),
-          body: bookModel.isLoading
+          body: viewModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
-              : SafeArea(
-                  child: ListView(
+              : SingleChildScrollView(
+                  child: Column(
                     children: [
-                      CategoryBookGrid(bookModel: bookModel),
+                      CategoryBookGrid(viewModel: viewModel),
                     ],
                   ),
                 ),
@@ -49,17 +45,17 @@ class BookCategoriesDetailPage extends StatelessWidget {
 class CategoryBookGrid extends StatelessWidget {
   const CategoryBookGrid({
     super.key,
-    required this.bookModel,
+    required this.viewModel,
   });
 
-  final CategoryViewModel bookModel;
+  final CategoryViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: bookModel.books.length,
+      itemCount: viewModel.books.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 0.6,
         crossAxisCount: 2,
@@ -67,12 +63,12 @@ class CategoryBookGrid extends StatelessWidget {
         mainAxisSpacing: 20,
       ),
       itemBuilder: (context, index) {
-        final book = bookModel.books[index];
+        final book = viewModel.books[index];
         return BookInfoContainer(
           onTap: () {
             AppRoutes().navigateToDetail(context, book);
           },
-          img: book.thumbnailUrl == ""
+          img: book.thumbnailUrl.isEmpty
               ? Icon(
                   Icons.book,
                   size: 150,

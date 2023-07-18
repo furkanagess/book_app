@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:book_app/product/constants/api_types.dart';
@@ -28,12 +26,8 @@ class CategoryService {
                 ))
             .toSet()
             .toList();
-      } else {
-        print('Error: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
+      } else {}
+    } catch (e) {}
     return _categories;
   }
 
@@ -56,12 +50,8 @@ class CategoryService {
                   author: item['volumeInfo']['authors'] != null ? item['volumeInfo']['authors'][0] ?? '' : 'Unknown Author',
                 ))
             .toList();
-      } else {
-        print('Error: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
+      } else {}
+    } catch (e) {}
     return _books;
   }
 }

@@ -3,12 +3,10 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
-import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/header_container.dart';
 import 'package:book_app/product/widgets/indicator/progress_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BookCategoryView extends StatelessWidget {
   const BookCategoryView({super.key});
@@ -21,7 +19,6 @@ class BookCategoryView extends StatelessWidget {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, CategoryViewModel viewModel) {
-        final categoryViewModel = Provider.of<CategoryViewModel>(context);
         return Scaffold(
           appBar: const CustomAppBar(
             automaticallyImplyLeading: false,
@@ -29,13 +26,13 @@ class BookCategoryView extends StatelessWidget {
               AppStrings.categories,
             ),
           ),
-          body: categoryViewModel.isLoading
+          body: viewModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
-              : SafeArea(
-                  child: ListView(
+              : SingleChildScrollView(
+                  child: Column(
                     children: [
                       SizedBox(height: context.dynamicHeight(0.05)),
-                      CategoryGrid(categoryModel: categoryViewModel),
+                      CategoryGrid(viewModel: viewModel),
                     ],
                   ),
                 ),
@@ -48,17 +45,17 @@ class BookCategoryView extends StatelessWidget {
 class CategoryGrid extends StatelessWidget {
   const CategoryGrid({
     super.key,
-    required this.categoryModel,
+    required this.viewModel,
   });
 
-  final CategoryViewModel categoryModel;
+  final CategoryViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: categoryModel.categories.length,
+      itemCount: viewModel.categories.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 1,
         crossAxisCount: 2,
@@ -66,14 +63,12 @@ class CategoryGrid extends StatelessWidget {
         mainAxisSpacing: 1,
       ),
       itemBuilder: (context, index) {
-        final category = categoryModel.categories[index];
+        final category = viewModel.categories[index];
         return Column(
           children: [
             HeaderContainer(
               onTap: () async {
-                AppRoutes().navigateToCategory(context, category);
-                final bookModel = Provider.of<CategoryViewModel>(context, listen: false);
-                await bookModel.fetchBooksByCategory(category.name);
+                viewModel.fetchAndNavigate(index, category);
               },
               bgColor: AppColors.green,
               textColor: AppColors.white,

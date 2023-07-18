@@ -7,7 +7,6 @@ import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
-import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';
@@ -15,7 +14,6 @@ import 'package:book_app/product/widgets/progress_indicator.dart';
 import 'package:book_app/product/widgets/text/row_icon_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
 
 class BookHomeView extends StatefulWidget {
   const BookHomeView({super.key});
@@ -33,9 +31,6 @@ class _BookHomeViewState extends State<BookHomeView> {
         model.setContext(context);
       },
       onPageBuilder: (BuildContext context, HomeViewModel viewModel) {
-        final homeViewModel = Provider.of<HomeViewModel>(context);
-        final trendingBooks = homeViewModel.trendingBooks;
-        final bestsellerBooks = homeViewModel.bestsellerBooks;
         return Scaffold(
           appBar: const CustomAppBar(
             automaticallyImplyLeading: false,
@@ -43,7 +38,7 @@ class _BookHomeViewState extends State<BookHomeView> {
               AppStrings.discover,
             ),
           ),
-          body: homeViewModel.isLoading
+          body: viewModel.isLoading
               ? CustomProgressIndicator(text: AppStrings.wait, indicatorColor: AppColors.green)
               : SingleChildScrollView(
                   child: Padding(
@@ -54,10 +49,10 @@ class _BookHomeViewState extends State<BookHomeView> {
                         headerInfoContainer(context),
                         SizedBox(height: context.dynamicHeight(0.05)),
                         trendingsHeaderRow(context),
-                        TrendBooks(context, trendingBooks, homeViewModel),
+                        trendBooksListview(context, viewModel),
                         SizedBox(height: context.dynamicHeight(0.05)),
                         recommendedHeaderRow(context),
-                        BestsellerBooks(context, bestsellerBooks, homeViewModel),
+                        bestsellerBooksListview(context, viewModel),
                       ],
                     ),
                   ),
@@ -67,49 +62,14 @@ class _BookHomeViewState extends State<BookHomeView> {
     );
   }
 
-  SizedBox TrendBooks(BuildContext context, List<Book> trendingBooks, HomeViewModel homeViewModel) {
+  SizedBox bestsellerBooksListview(BuildContext context, HomeViewModel viewModel) {
     return SizedBox(
       height: context.dynamicHeight(0.45),
       child: ListView.builder(
-        itemCount: trendingBooks.length,
+        itemCount: viewModel.bestsellerBooks.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final trendBook = trendingBooks[index];
-          return BookInfoContainer(
-            onTap: () {
-              AppRoutes().navigateToDetail(context, trendBook);
-            },
-            img: trendBook.thumbnailUrl == ""
-                ? Icon(
-                    Icons.book,
-                    size: 150,
-                    color: AppColors.green,
-                  )
-                : Image.network(
-                    trendBook.thumbnailUrl,
-                    fit: BoxFit.fill,
-                    width: context.dynamicWidth(0.4),
-                    height: context.dynamicHeight(0.22),
-                  ),
-            bgColor: AppColors.darkWhite,
-            title: trendBook.title,
-            subColor: AppColors.darkGrey,
-            subText: trendBook.author,
-            titleColor: AppColors.white,
-          );
-        },
-      ),
-    );
-  }
-
-  SizedBox BestsellerBooks(BuildContext context, List<Book> bestsellerBooks, HomeViewModel homeViewModel) {
-    return SizedBox(
-      height: context.dynamicHeight(0.45),
-      child: ListView.builder(
-        itemCount: bestsellerBooks.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final bestsellerBook = bestsellerBooks[index];
+          final bestsellerBook = viewModel.bestsellerBooks[index];
           return BookInfoContainer(
             onTap: () {
               AppRoutes().navigateToDetail(context, bestsellerBook);
@@ -130,6 +90,41 @@ class _BookHomeViewState extends State<BookHomeView> {
             title: bestsellerBook.title,
             subColor: AppColors.darkGrey,
             subText: bestsellerBook.author,
+            titleColor: AppColors.white,
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox trendBooksListview(BuildContext context, HomeViewModel viewModel) {
+    return SizedBox(
+      height: context.dynamicHeight(0.45),
+      child: ListView.builder(
+        itemCount: viewModel.trendingBooks.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          final trendBook = viewModel.trendingBooks[index];
+          return BookInfoContainer(
+            onTap: () {
+              AppRoutes().navigateToDetail(context, trendBook);
+            },
+            img: trendBook.thumbnailUrl == ""
+                ? Icon(
+                    Icons.book,
+                    size: 150,
+                    color: AppColors.green,
+                  )
+                : Image.network(
+                    trendBook.thumbnailUrl,
+                    fit: BoxFit.fill,
+                    width: context.dynamicWidth(0.4),
+                    height: context.dynamicHeight(0.22),
+                  ),
+            bgColor: AppColors.darkWhite,
+            title: trendBook.title,
+            subColor: AppColors.darkGrey,
+            subText: trendBook.author,
             titleColor: AppColors.white,
           );
         },

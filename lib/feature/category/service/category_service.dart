@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:book_app/product/constants/api_types.dart';
 import 'package:book_app/product/models/book.dart';
-import 'package:book_app/product/models/category.dart';
+import 'package:book_app/product/models/book_category.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryService {

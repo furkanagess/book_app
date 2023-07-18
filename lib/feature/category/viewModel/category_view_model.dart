@@ -3,7 +3,7 @@
 import 'package:book_app/feature/category/service/category_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
-import 'package:book_app/product/models/category.dart';
+import 'package:book_app/product/models/book_category.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 part 'category_view_model.g.dart';

@@ -5,7 +5,7 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
-import 'package:book_app/product/models/category.dart';
+import 'package:book_app/product/models/book_category.dart';
 import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/book_info_container.dart';

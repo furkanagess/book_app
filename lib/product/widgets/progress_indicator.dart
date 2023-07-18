@@ -4,10 +4,10 @@ import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class CustomProgressIndicator extends StatelessWidget {
-  String text;
-  Color indicatorColor;
+  final String text;
+  final Color indicatorColor;
 
-  CustomProgressIndicator({
+  const CustomProgressIndicator({
     super.key,
     required this.text,
     required this.indicatorColor,

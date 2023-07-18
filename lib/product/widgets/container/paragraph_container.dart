@@ -4,11 +4,11 @@ import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class ParapgraphContainer extends StatelessWidget {
-  Color bgColor;
-  Color textColor;
-  String title;
-  String description;
-  ParapgraphContainer({
+  final Color bgColor;
+  final Color textColor;
+  final String title;
+  final String description;
+  const ParapgraphContainer({
     super.key,
     required this.bgColor,
     required this.textColor,

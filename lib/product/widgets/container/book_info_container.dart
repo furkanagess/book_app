@@ -5,15 +5,6 @@ import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class BookInfoContainer extends StatelessWidget {
-  Function() onTap;
-  Color bgColor;
-  Color titleColor;
-  Color subColor;
-  String title;
-  String subText;
-
-  Widget img;
-
   BookInfoContainer({
     super.key,
     required this.onTap,
@@ -24,6 +15,14 @@ class BookInfoContainer extends StatelessWidget {
     required this.subText,
     required this.titleColor,
   });
+  final Function() onTap;
+  final Color bgColor;
+  final Color titleColor;
+  final Color subColor;
+  final String title;
+  final String subText;
+
+  Widget img;
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +42,11 @@ class BookInfoContainer extends StatelessWidget {
               children: [
                 Card(
                   color: AppColors.background,
-                  margin: const EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.all(10),
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  semanticContainer: true,
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   child: img,
                 ),

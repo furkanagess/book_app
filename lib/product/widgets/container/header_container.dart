@@ -4,11 +4,11 @@ import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class HeaderContainer extends StatelessWidget {
-  Function() onTap;
-  Color bgColor;
-  Color textColor;
-  String text;
-  HeaderContainer({
+  final Function() onTap;
+  final Color bgColor;
+  final Color textColor;
+  final String text;
+  const HeaderContainer({
     super.key,
     required this.onTap,
     required this.bgColor,

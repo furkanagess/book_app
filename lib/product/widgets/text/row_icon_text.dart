@@ -1,14 +1,13 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:book_app/product/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
+@immutable
 class IconTextRow extends StatelessWidget {
-  Color textColor;
-  Color iconColor;
-  String text;
-  IconData icon;
-  IconTextRow({
+  final Color textColor;
+  final Color iconColor;
+  final String text;
+  final IconData icon;
+  const IconTextRow({
     super.key,
     required this.icon,
     required this.iconColor,

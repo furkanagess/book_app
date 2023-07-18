@@ -27,8 +27,8 @@ class FavoriteBooksView extends StatelessWidget {
             AppStrings.myFavoriteBooks,
           ),
         ),
-        body: SafeArea(
-          child: ListView(
+        body: SingleChildScrollView(
+          child: Column(
             children: [
               buildFavoriteBookGrid(favoriteViewModel),
             ],
@@ -104,7 +104,7 @@ class FavoriteBooksView extends StatelessWidget {
       ),
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: book.thumbnailUrl == ""
+      child: book.thumbnailUrl.isEmpty
           ? Icon(
               Icons.book,
               size: 150,
@@ -182,7 +182,9 @@ class FavoriteBooksView extends StatelessWidget {
                     },
                     child: Text(
                       AppStrings.back,
-                      style: context.textTheme.bodyMedium?.copyWith(color: AppColors.background),
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: AppColors.background,
+                      ),
                     ),
                   ),
                 ],

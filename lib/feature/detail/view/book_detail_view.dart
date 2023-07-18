@@ -1,5 +1,4 @@
 import 'package:book_app/feature/detail/viewModel/book_detail_view_model.dart';
-import 'package:book_app/feature/favorite/viewModel/favorite_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
@@ -8,7 +7,6 @@ import 'package:book_app/product/models/book.dart';
 import 'package:book_app/product/widgets/appbar/custom_appbar.dart';
 import 'package:book_app/product/widgets/container/paragraph_container.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BookDetailView extends StatelessWidget {
   final Book book;
@@ -39,30 +37,28 @@ class BookDetailView extends StatelessWidget {
                 bgColor: AppColors.darkWhite,
                 textColor: AppColors.white,
                 title: AppStrings.description,
-                description: book.description == "" ? AppStrings.placeholderText : book.description,
+                description: book.description.isEmpty ? AppStrings.placeholderText : book.description,
               ),
             ],
           ),
         ),
-        floatingActionButton: fabButton(context),
+        floatingActionButton: fabButton(context, viewModel),
       ),
     );
   }
 
-  FloatingActionButton fabButton(BuildContext context) {
+  FloatingActionButton fabButton(BuildContext context, BookDetailViewModel viewModel) {
     return FloatingActionButton(
       elevation: 0,
       backgroundColor: AppColors.green,
       onPressed: () {
-        final favoriteViewModel = Provider.of<FavoriteViewModel>(context, listen: false);
-        favoriteViewModel.addBook(book);
-
+        viewModel.addBook(book);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            shape: StadiumBorder(),
+          SnackBar(
+            shape: const StadiumBorder(),
             behavior: SnackBarBehavior.floating,
-            content: Text(AppStrings.addFavorite),
-            duration: Duration(seconds: 2),
+            content: const Text(AppStrings.addFavorite),
+            duration: context.highDuration,
           ),
         );
       },
@@ -94,17 +90,17 @@ class HeaderBookImage extends StatelessWidget {
         ),
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: book.thumbnailUrl == ""
+        child: book.thumbnailUrl.isEmpty
             ? Icon(
                 Icons.book,
-                size: 250,
+                size: 250, // replace with enum
                 color: AppColors.green,
               )
             : Image.network(
                 book.thumbnailUrl,
                 fit: BoxFit.fill,
-                height: 250,
-                width: 200,
+                height: context.dynamicHeight(0.1),
+                width: context.dynamicWidth(0.22),
               ),
       ),
     );

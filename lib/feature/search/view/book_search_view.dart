@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:book_app/feature/search/viewModel/book_search_view_model.dart';
 import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
@@ -41,15 +39,25 @@ class _BookSearchViewState extends State<BookSearchView> {
           body: Column(
             children: [
               SearchBar(searchController: _searchController, bookSearchViewModel: bookSearchViewModel),
-              SearchedBookList(bookSearchViewModel),
+              SearchedItems(bookSearchViewModel: bookSearchViewModel),
             ],
           ),
         );
       },
     );
   }
+}
 
-  Expanded SearchedBookList(BookSearchViewModel bookSearchViewModel) {
+class SearchedItems extends StatelessWidget {
+  const SearchedItems({
+    super.key,
+    required this.bookSearchViewModel,
+  });
+
+  final BookSearchViewModel bookSearchViewModel;
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
         child: GridView.builder(
@@ -68,7 +76,7 @@ class _BookSearchViewState extends State<BookSearchView> {
               onTap: () {
                 AppRoutes().navigateToDetail(context, book);
               },
-              img: bookSearchViewModel.books[index].thumbnailUrl == ""
+              img: bookSearchViewModel.books[index].thumbnailUrl.isEmpty
                   ? Icon(
                       Icons.book,
                       size: 150,

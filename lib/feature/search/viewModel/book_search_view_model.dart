@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
-
 import 'package:book_app/feature/search/service/search_book_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
@@ -20,12 +18,8 @@ abstract class _BookSearchViewModelBase with Store, BaseViewModel, ChangeNotifie
   List<Book> get books => _books;
 
   Future<void> searchBooks(String query) async {
-    try {
-      final books = await _newBookService.searchBooks(query);
-      _books = books;
-      notifyListeners();
-    } catch (e) {
-      print('Error: $e');
-    }
+    final books = await _newBookService.searchBooks(query);
+    _books = books;
+    notifyListeners();
   }
 }

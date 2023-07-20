@@ -1,7 +1,5 @@
-import 'package:book_app/feature/category/view/category_page_view.dart';
-import 'package:book_app/feature/favorite/view/favorite_view.dart';
-import 'package:book_app/feature/home/view/book_home_view.dart';
-import 'package:book_app/feature/search/view/book_search_view.dart';
+import 'package:book_app/feature/bottomNavBar/bottom_nav_bar_provider.dart';
+import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -14,66 +12,54 @@ class BottomNavbar extends StatefulWidget {
 }
 
 class _BottomNavbarState extends State<BottomNavbar> {
-  int currentPage = 0;
-  final pages = [
-    const BookHomeView(),
-    const BookCategoryView(),
-    const FavoriteBooksView(),
-    const BookSearchView(),
-  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: pages[currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors.background,
-        selectedItemColor: AppColors.green,
-        unselectedItemColor: AppColors.darkGrey,
-        unselectedLabelStyle: TextStyle(
-          color: AppColors.darkWhite,
-        ),
-        unselectedIconTheme: IconThemeData(
-          color: AppColors.darkGrey,
-        ),
-        selectedIconTheme: IconThemeData(
-          color: AppColors.green,
-          size: 30,
-        ),
-        currentIndex: currentPage,
-        elevation: 5,
-        type: BottomNavigationBarType.fixed,
-        onTap: (index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
+    return BaseView<BottomNavBarProvider>(
+      viewModel: BottomNavBarProvider(),
+      onPageBuilder: (context, BottomNavBarProvider provider) {
+        return Scaffold(
+          body: provider.pages[provider.currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: AppColors.background,
+            selectedItemColor: AppColors.green,
+            unselectedItemColor: AppColors.darkGrey,
+            unselectedLabelStyle: TextStyle(
+              color: AppColors.darkWhite,
             ),
-            label: AppStrings.homeLabel,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.book,
+            unselectedIconTheme: IconThemeData(
+              color: AppColors.darkGrey,
             ),
-            label: AppStrings.categoriesLabel,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
+            selectedIconTheme: IconThemeData(
+              color: AppColors.green,
+              size: 30,
             ),
-            label: AppStrings.favoritesLabel,
+            currentIndex: provider.currentIndex,
+            elevation: 5,
+            type: BottomNavigationBarType.fixed,
+            onTap: (index) {
+              provider.setCurrentIndex(index);
+            },
+            items: [
+              navbarItem(Icons.home, AppStrings.homeLabel),
+              navbarItem(Icons.book, AppStrings.categoriesLabel),
+              navbarItem(Icons.favorite, AppStrings.favoritesLabel),
+              navbarItem(Icons.search, AppStrings.searcLabel),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-            ),
-            label: AppStrings.searcLabel,
-          ),
-        ],
+        );
+      },
+      onModelReady: (model) {
+        model.setContext(context);
+      },
+    );
+  }
+
+  BottomNavigationBarItem navbarItem(IconData icon, String label) {
+    return BottomNavigationBarItem(
+      icon: Icon(
+        icon,
       ),
+      label: label,
     );
   }
 }

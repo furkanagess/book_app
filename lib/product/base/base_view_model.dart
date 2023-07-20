@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-abstract class BaseViewModel {
+mixin class BaseViewModel {
   late BuildContext viewModelContext;
 
-  void setContext(BuildContext context);
-  void init();
+  void setContext(BuildContext context) {
+    throw UnimplementedError();
+  }
+
+  void init() {
+    throw UnimplementedError();
+  }
 }

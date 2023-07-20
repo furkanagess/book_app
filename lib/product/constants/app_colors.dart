@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class AppColors {
   const AppColors._();
   static Color get green => const Color(0xff1db954);

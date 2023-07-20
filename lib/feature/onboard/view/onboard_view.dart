@@ -3,11 +3,12 @@ import 'package:book_app/product/base/base_view.dart';
 import 'package:book_app/product/constants/app_colors.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/extensions/context_extension.dart';
+import 'package:book_app/product/routes/app_routes.dart';
 import 'package:book_app/product/widgets/avatar/onboad_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../model/onboard_model.dart';
+import '../../../product/models/onboard_model.dart';
 import '../viewModel/onboard_view_model.dart';
 
 class OnboardView extends StatelessWidget {
@@ -100,7 +101,7 @@ class OnboardView extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                viewModel.completeToOnBoard(context);
+                AppRoutes().completeToOnBoard(context);
               },
             )
           : Icon(
@@ -118,7 +119,7 @@ class OnboardView extends StatelessWidget {
           flex: 7,
           child: Padding(
             padding: context.paddingNormalHorizontal,
-            child: buildSVGPicture(model.imagePath),
+            child: buildSVGPicture(model.imagePath!),
           ),
         ),
         buildColumnDescription(context, model),
@@ -134,7 +135,7 @@ class OnboardView extends StatelessWidget {
           AutoSizeText(
             textAlign: TextAlign.center,
             maxLines: 2,
-            model.title,
+            model.title!,
             style: context.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.white,
@@ -144,7 +145,7 @@ class OnboardView extends StatelessWidget {
           AutoSizeText(
             textAlign: TextAlign.center,
             maxLines: 4,
-            model.description,
+            model.description!,
             style: context.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w400,
               color: AppColors.white,

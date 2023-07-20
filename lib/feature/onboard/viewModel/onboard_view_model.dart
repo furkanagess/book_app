@@ -1,13 +1,10 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'package:book_app/feature/main/main_page.dart';
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/constants/app_strings.dart';
 import 'package:book_app/product/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
-import '../model/onboard_model.dart';
+import '../../../product/models/onboard_model.dart';
 
 part 'onboard_view_model.g.dart';
 
@@ -46,15 +43,6 @@ abstract class _OnboardViewModelBase with Store, BaseViewModel {
           imagePath: SVGConstants.instance.bookLover,
         ),
       ],
-    );
-  }
-
-  void completeToOnBoard(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MainPage(),
-      ),
     );
   }
 }

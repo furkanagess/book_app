@@ -67,27 +67,27 @@ class _BookHomeViewState extends State<BookHomeView> {
         itemCount: viewModel.bestsellerBooks.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final bestsellerBook = viewModel.bestsellerBooks[index];
+          final bestsellerBooks = viewModel.bestsellerBooks[index];
           return BookInfoContainer(
             onTap: () {
-              AppRoutes().navigateToDetail(context, bestsellerBook);
+              AppRoutes().navigateToDetail(context, bestsellerBooks);
             },
-            img: bestsellerBook.thumbnailUrl.isEmpty
+            img: bestsellerBooks.thumbnailUrl.isEmpty
                 ? Icon(
                     Icons.book,
                     size: 150,
                     color: AppColors.green,
                   )
                 : Image.network(
-                    bestsellerBook.thumbnailUrl,
+                    bestsellerBooks.thumbnailUrl,
                     fit: BoxFit.fill,
                     width: context.dynamicWidth(0.4),
                     height: context.dynamicHeight(0.22),
                   ),
             bgColor: AppColors.darkWhite,
-            title: bestsellerBook.title,
+            title: bestsellerBooks.title,
             subColor: AppColors.darkGrey,
-            subText: bestsellerBook.author,
+            subText: bestsellerBooks.author,
             titleColor: AppColors.white,
           );
         },
@@ -102,27 +102,27 @@ class _BookHomeViewState extends State<BookHomeView> {
         itemCount: viewModel.trendingBooks.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final trendBook = viewModel.trendingBooks[index];
+          final trendingBooks = viewModel.trendingBooks[index];
           return BookInfoContainer(
             onTap: () {
-              AppRoutes().navigateToDetail(context, trendBook);
+              AppRoutes().navigateToDetail(context, trendingBooks);
             },
-            img: trendBook.thumbnailUrl.isEmpty
+            img: trendingBooks.thumbnailUrl.isEmpty
                 ? Icon(
                     Icons.book,
                     size: 150,
                     color: AppColors.green,
                   )
                 : Image.network(
-                    trendBook.thumbnailUrl,
+                    trendingBooks.thumbnailUrl,
                     fit: BoxFit.fill,
                     width: context.dynamicWidth(0.4),
                     height: context.dynamicHeight(0.22),
                   ),
             bgColor: AppColors.darkWhite,
-            title: trendBook.title,
+            title: trendingBooks.title,
             subColor: AppColors.darkGrey,
-            subText: trendBook.author,
+            subText: trendingBooks.author,
             titleColor: AppColors.white,
           );
         },

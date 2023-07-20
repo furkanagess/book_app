@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
-
 import 'package:book_app/feature/detail/view/book_detail_view.dart';
 import 'package:book_app/feature/home/service/home_service.dart';
 import 'package:book_app/product/base/base_view_model.dart';

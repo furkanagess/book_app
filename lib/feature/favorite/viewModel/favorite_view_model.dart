@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:book_app/product/base/base_view_model.dart';
 import 'package:book_app/product/models/book.dart';
 import 'package:flutter/material.dart';
